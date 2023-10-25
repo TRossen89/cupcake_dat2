@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5b64118d-df16-4250-a6db-244cdf8f627b" name="Changes" comment="package structure, Javalin and Thymeleaf">
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/create user.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/createUser.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/app/controllers/timeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/receipt.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/receipt.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
