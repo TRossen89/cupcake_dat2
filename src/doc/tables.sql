@@ -3,7 +3,7 @@
 BEGIN;
 
 
-CREATE TABLE IF NOT EXISTS public."user"
+CREATE TABLE IF NOT EXISTS public.user
 (
     id serial NOT NULL,
     username character varying(60) NOT NULL,
@@ -52,14 +52,14 @@ CREATE TABLE IF NOT EXISTS public.bottom
 
 ALTER TABLE IF EXISTS public.orders
     ADD CONSTRAINT user_id FOREIGN KEY (user_id)
-    REFERENCES public."user" (id) MATCH SIMPLE
+    REFERENCES public.user (id) MATCH SIMPLE
     ON UPDATE NO ACTION
        ON DELETE NO ACTION
     NOT VALID;
 
 
 ALTER TABLE IF EXISTS public.orderlines
-    ADD CONSTRAINT "order" FOREIGN KEY (order_id)
+    ADD CONSTRAINT order_id FOREIGN KEY (order_id)
     REFERENCES public.orders (id) MATCH SIMPLE
     ON UPDATE NO ACTION
        ON DELETE NO ACTION
