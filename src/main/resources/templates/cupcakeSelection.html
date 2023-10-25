@@ -28,14 +28,14 @@
 
 
             <form method="post" class="selector-form">
-                <select class="selector bottom-selector" name="topping">
+                <select class="selector bottom-selector" name="bottom" >
                     <option selected="selected">Choose bottom</option>
-                    <option th:each="bottom: ${#ctx.allBottoms}"  th:text="${bottom.getName()+ ' '+ bottom.getPrice() + 'kr.'}"></option>
+                    <option th:each="bottom: ${#ctx.allBottoms}" th:value="${bottom.id}" th:text="${bottom.getName()+ ' ('+ bottom.getPrice() + 'kr.)'}"></option>
                 </select>
 
-                <select class="selector topping-selector" name="bottom">
+                <select class="selector topping-selector" name="topping">
                     <option selected="selected">Choose topping</option>
-                    <option th:each="topping: ${#ctx.allToppings}"  th:text="${topping.getName()+ ' '+ topping.getPrice() + 'kr.'}"></option><option></option>
+                    <option th:each="topping: ${#ctx.allToppings}" th:value="${topping.id}" th:text="${topping.getName()+ ' '+ topping.getPrice() + 'kr.'}" ></option><
                 </select>
                 <input class="quantity-selector" name="quantity" value="1">
 
@@ -58,12 +58,15 @@
                     <td th:text="${orderline.totalPrice}"></td>
                 </tr>
                 <tr>
-                    <td colspan="4">Total price:</td>
+                    <td colspan="4" th:text="${'Total price: ' + #ctx.session.totalPriceOfCart}"></td>
                 </tr>
             </table>
 
         </div>
     </div>
+
+
+    <p th:text="${#ctx.dbErrorMsg}"></p>
 
 
 </div>

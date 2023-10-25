@@ -43,19 +43,29 @@ public class CartController {
 
     public static void addToCart(Context ctx, ConnectionPool connectionPool){
 
-        String bottomName = ctx.formParam("bottom");
-        String toppingName = ctx.formParam("topping");
+        int bottomId = Integer.parseInt(ctx.formParam("bottom"));
+        int toppingId = Integer.parseInt(ctx.formParam("topping"));
         int quantity = Integer.parseInt(ctx.formParam("quantity"));
 
-        double totalPrice = 0;
+        List<Topping> allToppings;
+        List<Bottom> allBottoms;
 
         List<Orderline> orderlineList = ctx.sessionAttribute("orderlineList");
 
         try{
-            totalPrice = OrderMapper.getTotalPriceOfOrderline(quantity, bottomName, toppingName, connectionPool);
 
-            Orderline newOrderline = new Orderline(bottomName, toppingName, quantity, totalPrice);
+            Orderline newOrderline = OrderMapper.getTotalPriceOfOrderline(bottomId, toppingId, quantity, connectionPool);
+
             orderlineList.add(newOrderline);
+
+            allBottoms = OptionsMapper.getAllBottoms(connectionPool);
+            allToppings = OptionsMapper.getAllToppings(connectionPool);
+
+            ctx.attribute("allBottoms", allBottoms);
+            ctx.attribute("allToppings", allToppings);
+
+            double totalPriceOfCart = totalPriceOfCart(orderlineList);
+            ctx.sessionAttribute("totalPriceOfCart", totalPriceOfCart);
 
             ctx.sessionAttribute("orderlineList", orderlineList);
             ctx.render("/cupcakeSelection.html");
@@ -66,6 +76,17 @@ public class CartController {
             ctx.render("/cupcakeSelection.html");
         }
 
+
+    }
+
+    public static double totalPriceOfCart(List<Orderline> orderlines){
+
+        double totalPriceOfCart = 0;
+        for(Orderline o: orderlines){
+
+            totalPriceOfCart += o.getTotalPrice();
+        }
+        return totalPriceOfCart;
 
     }
 
