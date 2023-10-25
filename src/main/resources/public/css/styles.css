@@ -21,3 +21,17 @@
     width: 10vw;
     background-color: blue;
 }
+
+.orders-btn{
+    height: 5vw;
+    width: 10vw;
+    margin-left: 1.5vw;
+
+}
+
+.all-orders-btn{
+    height: 5vw;
+    width: 10vw;
+    margin-left: 1.5vw;
+
+}

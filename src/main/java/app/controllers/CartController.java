@@ -3,6 +3,7 @@ package app.controllers;
 import app.entities.Bottom;
 import app.entities.Orderline;
 import app.entities.Topping;
+import app.entities.User;
 import app.exceptions.DatabaseException;
 import app.persistence.ConnectionPool;
 import app.persistence.OptionsMapper;
@@ -14,6 +15,7 @@ import java.util.List;
 
 public class CartController {
 
+    //TODO: Delete this method or finish it and transfer it to UserController
     public static void login(Context ctx, ConnectionPool connectionPool){
 
         List<Orderline> orderlineList = new ArrayList<>();
@@ -22,11 +24,14 @@ public class CartController {
         List<Topping> allToppings;
         List<Bottom> allBottoms;
 
+        //User currentUser = new User(1, "tobias", "1234", "admin", 200.0);
+
         try{
             allBottoms = OptionsMapper.getAllBottoms(connectionPool);
             allToppings = OptionsMapper.getAllToppings(connectionPool);
             ctx.attribute("allBottoms", allBottoms);
             ctx.attribute("allToppings", allToppings);
+            //ctx.sessionAttribute("currentUser", currentUser);
             ctx.render("/cupcakeSelection.html");
 
         }catch (DatabaseException e){
@@ -65,6 +70,7 @@ public class CartController {
             ctx.attribute("allToppings", allToppings);
 
             double totalPriceOfCart = totalPriceOfCart(orderlineList);
+
             ctx.sessionAttribute("totalPriceOfCart", totalPriceOfCart);
 
             ctx.sessionAttribute("orderlineList", orderlineList);

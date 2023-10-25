@@ -2,23 +2,23 @@ package app.entities;
 
 public class Orderline {
 
-    String bottom;
-    String topping;
+    Bottom bottom;
+    Topping topping;
     int quantity;
     double totalPrice;
 
-    public Orderline(String bottom, String topping, int quantity, double totalPrice) {
+    public Orderline(Bottom bottom, Topping topping, int quantity, double totalPrice) {
         this.bottom = bottom;
         this.topping = topping;
         this.quantity = quantity;
         this.totalPrice = totalPrice;
     }
 
-    public String getBottom() {
+    public Bottom getBottom() {
         return bottom;
     }
 
-    public String getTopping() {
+    public Topping getTopping() {
         return topping;
     }
 

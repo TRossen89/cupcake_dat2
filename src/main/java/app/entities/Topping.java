@@ -3,9 +3,9 @@ package app.entities;
 public class Topping {
 
 
-    int id;
-    String name;
-    double price;
+    private int id;
+    private String name;
+    private double price;
 
     public Topping(int id, String name, double price) {
         this.id = id;

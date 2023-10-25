@@ -12,7 +12,11 @@
 <div class="page-box">
     <header>
         <div class="header-for-all-pages">
+            <div>
             <button class="home-btn">Home</button>
+            <button class="orders-btn" th:if="${#ctx.session.currentUser.role.equals('customer')}" th:value="${#ctx.session.currentUser.id}">Orders</button>
+            <button class="all-orders-btn" th:if="${#ctx.session.currentUser.role.equals('admin')}" th:value="${#ctx.session.currentUser.id}">All orders</button>
+            </div>
             <button class="login-btn">Login</button>
         </div>
     </header>
@@ -30,12 +34,12 @@
             <form method="post" class="selector-form">
                 <select class="selector bottom-selector" name="bottom" >
                     <option selected="selected">Choose bottom</option>
-                    <option th:each="bottom: ${#ctx.allBottoms}" th:value="${bottom.id}" th:text="${bottom.getName()+ ' ('+ bottom.getPrice() + 'kr.)'}"></option>
+                    <option th:each="bottom: ${#ctx.allBottoms}" th:value="${bottom.id}" th:text="${bottom.getName()+ ' ('+ bottom.getPrice() + '$)'}"></option>
                 </select>
 
                 <select class="selector topping-selector" name="topping">
                     <option selected="selected">Choose topping</option>
-                    <option th:each="topping: ${#ctx.allToppings}" th:value="${topping.id}" th:text="${topping.getName()+ ' '+ topping.getPrice() + 'kr.'}" ></option><
+                    <option th:each="topping: ${#ctx.allToppings}" th:value="${topping.id}" th:text="${topping.getName()+ ' ('+ topping.getPrice() + '$)'}" ></option><
                 </select>
                 <input class="quantity-selector" name="quantity" value="1">
 
@@ -47,20 +51,38 @@
 
 
         <div class="cart-box">
+            <div class="cart-text-box">
+                <p>Cart</p>
+            </div>
+
             <table class="cart-table">
                 <tr>
-                    <th>Cart</th>
+                    <th>Qty</th>
+                    <th></th>
+                    <th>Bottom</th>
+                    <th>Topping</th>
+                    <th>Price</th>
                 </tr>
+
                 <tr th:each="orderline: ${#ctx.session.orderlineList}">
-                    <td th:text="${orderline.topping}"></td>
-                    <td th:text="${orderline.bottom}"></td>
                     <td th:text="${orderline.quantity}"></td>
+                    <td>X</td>
+                    <td th:text="${orderline.bottom.name}"></td>
+                    <td th:text="${orderline.topping.name}"></td>
                     <td th:text="${orderline.totalPrice}"></td>
                 </tr>
                 <tr>
-                    <td colspan="4" th:text="${'Total price: ' + #ctx.session.totalPriceOfCart}"></td>
+                    <td colspan="5" th:text="${'Total price: ' + #ctx.session.totalPriceOfCart}"></td>
                 </tr>
             </table>
+
+            <form method="post" class="pay-btn-form">
+                <button type="submit" class="pay-btn" formaction="/buy">Pay</button>
+            </form>
+        </div>
+
+        <div class="error-msg-box">
+            <p th:text="${#ctx.dbConnectionError}"></p>
 
         </div>
     </div>
