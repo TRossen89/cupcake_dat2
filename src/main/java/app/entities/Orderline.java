@@ -13,4 +13,20 @@ public class Orderline {
         this.quantity = quantity;
         this.totalPrice = totalPrice;
     }
+
+    public String getBottom() {
+        return bottom;
+    }
+
+    public String getTopping() {
+        return topping;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
 }

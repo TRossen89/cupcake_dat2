@@ -1,6 +1,7 @@
 package app;
 
 import app.config.ThymeleafConfig;
+import app.controllers.CartController;
 import app.persistence.ConnectionPool;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinThymeleaf;
@@ -24,6 +25,8 @@ public class Main {
 
         // Routing
 
-        app.get("/", ctx ->  ctx.render("index.html"));
+        app.get("/", ctx ->  ctx.render("template.html"));
+        app.post("/addToCart", ctx -> CartController.addToCart(ctx, connectionPool));
+        app.post("/login", ctx-> CartController.login(ctx, connectionPool));
     }
 }

@@ -6,6 +6,8 @@
 
 .quantity-selector {
     width: 6vw;
+    height: 2.58vw;
+    text-align: right;
 }
 
 .under-header-box {
@@ -19,17 +21,46 @@
 
 }
 
+.selector-box{
+    border: solid darkturquoise;
+}
+.selector-text-box{
+    border: solid orange;
+    padding: 2vw;
+    margin-left: 0vw;
+    display: flex;
+    gap: 4vw;
+}
+
 .selector-form {
     border: solid rebeccapurple;
+    padding: 2vw;
     margin-left: 5vw;
     display: flex;
     gap: 4vw;
 
 }
 
+.span-selector-text{
+    height: 3vw;
+    width: 16vw;
+    text-align: center;
+    font-size: 1.6vw;
+}
+.span-bottom{
+    border: solid cadetblue;
+}
+.span-topping{
+    border: solid black;
+}
+.span-quantity{
+    border: solid palevioletred;
+    width: 4vw;
+}
+
 .add-btn{
     height: 3vw;
-    width: 10vw;
+    width: 6vw;
 
 }
 
@@ -37,12 +68,11 @@
     border: solid green;
 }
 
-
 .cart-table {
     border: solid black;
 }
 
 .cart-table td {
     border: solid black;
-    padding: 2vw;
+    padding: .2vw;
 }
