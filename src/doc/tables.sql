@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS public.orders
     id serial NOT NULL,
     date date NOT NULL,
     status character varying(30) NOT NULL,
-    "user-id" integer NOT NULL,
+    user_id integer NOT NULL,
     PRIMARY KEY (id)
     );
 
@@ -28,8 +28,8 @@ CREATE TABLE IF NOT EXISTS public.orderlines
     id serial NOT NULL,
     order_id integer NOT NULL,
     quantity integer NOT NULL,
-    "topping-id" integer NOT NULL,
-    "bottom-id" integer NOT NULL,
+    topping_id integer NOT NULL,
+    bottom_id integer NOT NULL,
     total_price double precision NOT NULL,
     PRIMARY KEY (id)
     );
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS public.bottom
     );
 
 ALTER TABLE IF EXISTS public.orders
-    ADD CONSTRAINT "user-id" FOREIGN KEY ("user-id")
+    ADD CONSTRAINT user_id FOREIGN KEY (user_id)
     REFERENCES public."user" (id) MATCH SIMPLE
     ON UPDATE NO ACTION
        ON DELETE NO ACTION
@@ -67,7 +67,7 @@ ALTER TABLE IF EXISTS public.orderlines
 
 
 ALTER TABLE IF EXISTS public.orderlines
-    ADD CONSTRAINT topping FOREIGN KEY ("topping-id")
+    ADD CONSTRAINT topping FOREIGN KEY (topping_id)
     REFERENCES public.topping (id) MATCH SIMPLE
     ON UPDATE NO ACTION
        ON DELETE NO ACTION
@@ -75,7 +75,7 @@ ALTER TABLE IF EXISTS public.orderlines
 
 
 ALTER TABLE IF EXISTS public.orderlines
-    ADD CONSTRAINT bottom FOREIGN KEY ("bottom-id")
+    ADD CONSTRAINT bottom FOREIGN KEY (bottom_id)
     REFERENCES public.bottom (id) MATCH SIMPLE
     ON UPDATE NO ACTION
        ON DELETE NO ACTION
