@@ -1,0 +1,48 @@
+.selector {
+
+    height: 3vw;
+    width: 16vw;
+}
+
+.quantity-selector {
+    width: 6vw;
+}
+
+.under-header-box {
+    border: solid blue;
+    margin-top: 5vw;
+    min-height: 50vw;
+
+    display: flex;
+    justify-content: flex-start;
+    gap: 5vw;
+
+}
+
+.selector-form {
+    border: solid rebeccapurple;
+    margin-left: 5vw;
+    display: flex;
+    gap: 4vw;
+
+}
+
+.add-btn{
+    height: 3vw;
+    width: 10vw;
+
+}
+
+.cart-box {
+    border: solid green;
+}
+
+
+.cart-table {
+    border: solid black;
+}
+
+.cart-table td {
+    border: solid black;
+    padding: 2vw;
+}

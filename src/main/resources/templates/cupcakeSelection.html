@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buy Cupcake</title>
+    <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <link href="../public/css/cupcakeSelectionStyle.css" th:href="@{/css/cupcakeSelectionSstyle.css}" rel="stylesheet"/>
+</head>
+
+<body>
+
+<div class="page-box">
+    <header>
+        <div class="header-for-all-pages">
+            <button class="home-btn">Home</button>
+            <button class="login-btn">Login</button>
+        </div>
+    </header>
+
+    <div class="under-header-box">
+
+    <div class="selector-box">
+        <form method="post" class="selector-form">
+        <select class="selector topping-selector">
+            <option selected="selected">Choose topping</option>
+            <option></option>
+        </select>
+
+        <select class="selector bottom-selector">
+            <option selected="selected">Choose bottom</option>
+            <option></option>
+        </select>
+        <select class="selector quantity-selector">
+            <option selected="selected"> Quantity </option>
+            <option></option>
+        </select>
+
+        <button class="add-btn" formaction="/addToCart">Add to cart</button>
+
+        </form>
+
+    </div>
+
+        <div class="cart-box">
+            <table class="cart-table">
+                <tr>
+                    <th>Cart</th>
+                </tr>
+                <tr th:each="orderline: ${#ctx.session.orderlineList}">
+                    <td th:text="${orderline.topping}" ></td>
+                    <td th:text="${orderline.bottom}" ></td>
+                    <td th:text="${orderline.quantity}" ></td>
+                    <td th:text="${orderline.totalPrice}" ></td>
+                </tr>
+                <tr>
+                    <td>Total price: </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+</html>
