@@ -5,17 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5b64118d-df16-4250-a6db-244cdf8f627b" name="Changes" comment="package structure, Javalin and Thymeleaf">
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/controllers/CartController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/controllers/CupcakeOptionsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/entities/Orderline.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/entities/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/persistence/ConnectionPool.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/public/css/cupcakeSelectionStyle.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/cupcakeSelection.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/doc/tables.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/template.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/template.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
