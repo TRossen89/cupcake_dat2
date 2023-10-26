@@ -36,23 +36,13 @@ public class OrderController {
                     orderlinesForReceipt.add(orderline);
                 }
                 Cart cartForReceipt = new Cart(orderlinesForReceipt);
+                ctx.attribute("receipt", cartForReceipt);
 
                 // Clearing cart for cupcakeSelection.html
                 cart.clearCart();
                 ctx.sessionAttribute("cart", cart);
 
-                /*
-                // TODO: Delete these and remember to add them before every rendering of cupcakeSelection.html
-                allBottoms = OptionsMapper.getAllBottoms(connectionPool);
-                allToppings = OptionsMapper.getAllToppings(connectionPool);
-                ctx.attribute("allBottoms", allBottoms);
-                ctx.attribute("allToppings", allToppings);
-                 */
-
-                ctx.attribute("receipt", cartForReceipt);
-
-                //TODO: It should render html page with receipt
-                ctx.render("/template.html");
+                ctx.render("/receipt.html");
             }
             else{
                 // Rendering cupcakeSelection.html if customer doesn't have enough money and showing info message

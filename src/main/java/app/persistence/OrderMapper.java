@@ -22,7 +22,6 @@ public class OrderMapper {
         double toppingPrice = 0;
         double totalPrice;
 
-
         String bottomName = "";
         String toppingName = "";
 
@@ -84,17 +83,14 @@ public class OrderMapper {
 
         // Checking if user has enough money
         if (newBalance >= 0) {
-
             // Setting new balance
             settingBalance(newBalance, currentUser, connectionPool);
-
             //Inserting order in DB if user has enough money
             insertingOrderInDB(currentUser, totalPriceOfOrder, connectionPool, orderlineList);
         } else {
             // Returning false if user doesn't have enough money
             return false;
         }
-
         // Returning true if user has enough money
         return true;
     }
@@ -170,11 +166,11 @@ public class OrderMapper {
         }
     }
 
-
     private static double calculateNewBalance(User currentUser, double totalPriceOfOrder, ConnectionPool connectionPool) throws DatabaseException {
 
         double oldBalance = 0;
 
+        // Fetching the old balance from the DB
         String sql3 = "SELECT balance FROM public.user WHERE id = ?";
 
         try (Connection connection = connectionPool.getConnection()) {
@@ -192,6 +188,7 @@ public class OrderMapper {
             throw new DatabaseException("Error when calculating new balance");
         }
 
+        // Calculating new balance
         double newBalance = oldBalance - totalPriceOfOrder;
 
         return newBalance;

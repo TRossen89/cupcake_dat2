@@ -38,8 +38,6 @@ public class Main {
         app.post("/addToCart", ctx -> CartController.addToCart(ctx, connectionPool));
         app.post("/deleteOrderlineInCart", ctx-> CartController.deleteOrderline(ctx, connectionPool));
 
-        //TODO: Delete next line
-        app.post("/login", ctx -> CartController.login(ctx, connectionPool));
         app.post("/buy", ctx -> OrderController.placeOrder(ctx, connectionPool));
 
     }
@@ -52,8 +50,6 @@ public class Main {
 
         List<Orderline> orderlineList = new ArrayList<>();
         Cart cart = new Cart(orderlineList);
-        //Cart cartForReceipt = new Cart(orderlineList);
-        //ctx.attribute("receipt", cartForReceipt);
         ctx.sessionAttribute("cart", cart);
         ctx.render("/template.html");
 
