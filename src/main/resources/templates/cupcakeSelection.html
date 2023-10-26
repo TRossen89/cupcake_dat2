@@ -47,6 +47,9 @@
                 <button class="add-btn" formaction="/addToCart">Add to cart</button>
 
             </form>
+
+
+            <p th:text="${#ctx.noMoney}"></p>
         </div>
 
 
@@ -62,17 +65,21 @@
                     <th>Bottom</th>
                     <th>Topping</th>
                     <th>Price</th>
+                    <th>Del</th>
                 </tr>
 
-                <tr th:each="orderline: ${#ctx.session.orderlineList}">
+                <tr th:each="orderline: ${#ctx.session.cart.getOrderlineList()}">
                     <td th:text="${orderline.quantity}"></td>
                     <td>X</td>
                     <td th:text="${orderline.bottom.name}"></td>
                     <td th:text="${orderline.topping.name}"></td>
                     <td th:text="${orderline.totalPrice}"></td>
+                    <form method="post">
+                    <td> <button class="delete-btn" type="submit" formaction="/deleteOrderline" name="delete-btn">Del</button></td>
+                    </form>
                 </tr>
                 <tr>
-                    <td colspan="5" th:text="${'Total price: ' + #ctx.session.totalPriceOfCart}"></td>
+                    <td colspan="6" th:text="${'Total price: ' + #ctx.session.cart.getTotalPriceOfCart()}"></td>
                 </tr>
             </table>
 

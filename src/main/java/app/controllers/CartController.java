@@ -1,9 +1,6 @@
 package app.controllers;
 
-import app.entities.Bottom;
-import app.entities.Orderline;
-import app.entities.Topping;
-import app.entities.User;
+import app.entities.*;
 import app.exceptions.DatabaseException;
 import app.persistence.ConnectionPool;
 import app.persistence.OptionsMapper;
@@ -19,7 +16,9 @@ public class CartController {
     public static void login(Context ctx, ConnectionPool connectionPool){
 
         List<Orderline> orderlineList = new ArrayList<>();
-        ctx.sessionAttribute("orderlineList", orderlineList);
+
+        Cart cart = new Cart(orderlineList);
+        ctx.sessionAttribute("cart", cart);
 
         List<Topping> allToppings;
         List<Bottom> allBottoms;
@@ -55,24 +54,27 @@ public class CartController {
         List<Topping> allToppings;
         List<Bottom> allBottoms;
 
-        List<Orderline> orderlineList = ctx.sessionAttribute("orderlineList");
+        Cart cart = ctx.sessionAttribute("cart");
+        //List<Orderline> orderlineList = ctx.sessionAttribute("orderlineList");
 
         try{
 
-            Orderline newOrderline = OrderMapper.getTotalPriceOfOrderline(bottomId, toppingId, quantity, connectionPool);
+            Orderline newOrderline = OrderMapper.getOrderline(bottomId, toppingId, quantity, connectionPool);
 
-            orderlineList.add(newOrderline);
+            cart.addToCart(newOrderline);
+
+            //orderlineList.add(newOrderline);
+            //double totalPriceOfCart = totalPriceOfCart(orderlineList);
+
 
             allBottoms = OptionsMapper.getAllBottoms(connectionPool);
             allToppings = OptionsMapper.getAllToppings(connectionPool);
 
             ctx.attribute("allBottoms", allBottoms);
             ctx.attribute("allToppings", allToppings);
-
-            double totalPriceOfCart = totalPriceOfCart(orderlineList);
-
-            ctx.sessionAttribute("totalPriceOfCart", totalPriceOfCart);
-            ctx.sessionAttribute("orderlineList", orderlineList);
+            ctx.sessionAttribute("cart", cart);
+            //ctx.sessionAttribute("totalPriceOfCart", totalPriceOfCart);
+            //ctx.sessionAttribute("orderlineList", orderlineList);
             ctx.render("/cupcakeSelection.html");
 
         }catch (DatabaseException e){
@@ -84,6 +86,11 @@ public class CartController {
 
     }
 
+    public static void deleteOrderline(Context ctx, ConnectionPool connectionPool) {
+
+
+    }
+/*
     public static double totalPriceOfCart(List<Orderline> orderlines){
 
         double totalPriceOfCart = 0;
@@ -94,5 +101,7 @@ public class CartController {
         return totalPriceOfCart;
 
     }
+
+ */
 
 }

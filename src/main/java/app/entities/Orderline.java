@@ -17,15 +17,12 @@ public class Orderline {
     public Bottom getBottom() {
         return bottom;
     }
-
     public Topping getTopping() {
         return topping;
     }
-
     public int getQuantity() {
         return quantity;
     }
-
     public double getTotalPrice() {
         return totalPrice;
     }

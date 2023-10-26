@@ -33,6 +33,7 @@ public class Main {
         app.get("/", ctx -> renderFrontPage(ctx));
 
         app.post("/addToCart", ctx -> CartController.addToCart(ctx, connectionPool));
+        app.post("/deleteOrderline", ctx->CartController.deleteOrderline(ctx, connectionPool));
         app.post("/login", ctx -> CartController.login(ctx, connectionPool));
         app.post("/buy", ctx -> OrderController.placeOrder(ctx, connectionPool));
     }
