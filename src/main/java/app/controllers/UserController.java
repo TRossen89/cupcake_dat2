@@ -1,8 +1,11 @@
+package app.controllers;
+
 import app.entities.User;
-import app.exceptions.DatabaseException;
 import app.persistence.ConnectionPool;
 import app.persistence.UserMapper;
 import io.javalin.http.Context;
+
+import java.sql.SQLException;
 
 public class UserController {
     public static void login(Context ctx, ConnectionPool connectionPool)
@@ -13,12 +16,12 @@ public class UserController {
         {
             User user = UserMapper.login(name, password, connectionPool);
             ctx.sessionAttribute("currentUser", user);
-            ctx.render("welcome.html");
+            ctx.render("/cupcakeSelection.html");
         }
-        catch (DatabaseException e)
+        catch (SQLException e)
         {
             ctx.attribute("message", e.getMessage());
-            ctx.render("index.html");
+            ctx.render("login.html");
         }
     }
 }

@@ -1,6 +1,7 @@
 package app;
 
 import app.config.ThymeleafConfig;
+import app.controllers.UserController;
 import app.persistence.ConnectionPool;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinThymeleaf;
@@ -24,7 +25,8 @@ public class Main {
 
         // Routing
 
-        app.get("/", ctx ->  ctx.render("index.html"));
-        app.post("/login", ctx -> ctx.)
+        app.get("/", ctx ->  ctx.render("login.html"));
+        app.post("/login", ctx -> UserController.login(ctx, connectionPool));
+
     }
 }
