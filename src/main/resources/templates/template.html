@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Template</title>
     <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <link href="../public/css/cupcakeSelectionStyle.css" th:href="@{/css/cupcakeSelectionStyle.css}" rel="stylesheet"/>
 
 </head>
 
@@ -20,6 +21,30 @@
         </div>
     </header>
 
+    <table class="cart-table">
+        <tr>
+            <th>Qty</th>
+            <th></th>
+            <th>Bottom</th>
+            <th>Topping</th>
+            <th>Price</th>
+            <th>Del</th>
+        </tr>
+
+        <tr th:each="orderline: ${#ctx.receipt.getOrderlineList()}">
+            <td th:text="${orderline.quantity}"></td>
+            <td>X</td>
+            <td th:text="${orderline.bottom.name}"></td>
+            <td th:text="${orderline.topping.name}"></td>
+            <td th:text="${orderline.totalPrice}"></td>
+            <form method="post">
+                <td> <button class="delete-btn" type="submit" formaction="/deleteOrderlineInCart" name="delete-btn" th:value="${#ctx.receipt.getOrderlineList().indexOf(orderline)}">Del</button></td>
+            </form>
+        </tr>
+        <tr>
+            <td colspan="6" th:text="${'Total price: ' + #ctx.receipt.getTotalPriceOfCart()}"></td>
+        </tr>
+    </table>
 </div>
 
 </body>

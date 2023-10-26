@@ -30,9 +30,7 @@ public class CartController {
             ctx.attribute("dbErroMsg", e);
             ctx.render("/cupcakeSelection.html");
         }
-
     }
-
 
     public static void addToCart(Context ctx, ConnectionPool connectionPool) {
 

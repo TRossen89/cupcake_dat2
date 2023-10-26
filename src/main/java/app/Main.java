@@ -24,15 +24,15 @@ public class Main {
     private static final ConnectionPool connectionPool = ConnectionPool.getInstance(USER, PASSWORD, URL, DB);
 
     public static void main(String[] args) {
-        // Initializing Javalin and Jetty webserver
 
+
+        // Initializing Javalin and Jetty webserver
         Javalin app = Javalin.create(config -> {
             config.staticFiles.add("/public");
             JavalinThymeleaf.init(ThymeleafConfig.templateEngine());
         }).start(7070);
 
         // Routing
-
         app.get("/", ctx -> renderFrontPage(ctx));
 
         app.post("/addToCart", ctx -> CartController.addToCart(ctx, connectionPool));
@@ -49,8 +49,11 @@ public class Main {
 
         User currentUser = new User(1, "guest", "1234sdf2338jdsvw34599458490sks", "admin", 200.0);
         ctx.sessionAttribute("currentUser", currentUser);
+
         List<Orderline> orderlineList = new ArrayList<>();
         Cart cart = new Cart(orderlineList);
+        //Cart cartForReceipt = new Cart(orderlineList);
+        //ctx.attribute("receipt", cartForReceipt);
         ctx.sessionAttribute("cart", cart);
         ctx.render("/template.html");
 
