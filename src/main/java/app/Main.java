@@ -25,5 +25,7 @@ public class Main {
         // Routing
 
         app.get("/", ctx ->  ctx.render("index.html"));
+
+        app.get("/adminpage", ctx -> ctx.render("adminpage.html"));
     }
 }
