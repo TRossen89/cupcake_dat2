@@ -11,7 +11,7 @@ public class UserMapper {
     
     public static User login(String name, String password, ConnectionPool connectionPool) throws SQLException 
     {
-        String sql = "SELECT * FROM public.\"user\" WHERE username=? AND password=?";
+        String sql = "SELECT * FROM public.user WHERE username=? AND password=?";
 
         try(Connection connection = connectionPool.getConnection()){
             try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
