@@ -79,11 +79,8 @@ public class OrderMapper {
     public static void placeOrderInDB(List<Orderline> orderlineList, double totalPriceOfOrder, User currentUser, ConnectionPool connectionPool) throws DatabaseException  {
 
         int generatedOrderId = 0;
-        //TODO: Make this dynamic
-
 
         long millis=System.currentTimeMillis();
-
         java.sql.Date dateOfOrder = new java.sql.Date(millis);
 
         String sql1 = "INSERT INTO \"orders\" (date, status, user_id, total_price) VALUES (?, ?, ?, ?)";

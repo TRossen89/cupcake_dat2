@@ -72,7 +72,6 @@ public class CartController {
             double totalPriceOfCart = totalPriceOfCart(orderlineList);
 
             ctx.sessionAttribute("totalPriceOfCart", totalPriceOfCart);
-
             ctx.sessionAttribute("orderlineList", orderlineList);
             ctx.render("/cupcakeSelection.html");
 
