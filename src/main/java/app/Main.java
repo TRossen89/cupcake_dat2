@@ -26,7 +26,10 @@ public class Main {
         // Routing
 
         app.get("/", ctx ->  ctx.render("index.html"));
+      
         app.get("/createUser", ctx -> ctx.render("createUser.html"));
         app.post("/createUser", ctx -> UserControler.createUser(ctx, connectionPool));
+      
+        app.get("/adminpage", ctx -> ctx.render("adminpage.html"));
     }
 }
