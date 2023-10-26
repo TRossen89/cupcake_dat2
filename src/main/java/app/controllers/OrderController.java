@@ -23,11 +23,16 @@ public class OrderController {
         List<Bottom> allBottoms;
 
         try{
-            boolean orderConfirmed = OrderMapper.placeOrderInDB(orderlineList, totalPriceOfOrder, currentUser, connectionPool);
 
+            // Placing order in DB only if customer has enough money
+            boolean orderConfirmed = OrderMapper.checkAndPlaceOrderInDB(orderlineList, totalPriceOfOrder, currentUser, connectionPool);
+
+            // Clearing cart and render receipt.html
             if(orderConfirmed){
                 cart.clearCart();
                 ctx.sessionAttribute("cart", cart);
+
+                // TODO: Delete these and remember to add them before every rendering of cupcakeSelection.html
                 allBottoms = OptionsMapper.getAllBottoms(connectionPool);
                 allToppings = OptionsMapper.getAllToppings(connectionPool);
                 ctx.attribute("allBottoms", allBottoms);
@@ -37,6 +42,7 @@ public class OrderController {
                 ctx.render("/cupcakeSelection.html");
             }
             else{
+                // Rendering cupcakeSelection.html if customer doesn't have enough money and showing info message
                 allBottoms = OptionsMapper.getAllBottoms(connectionPool);
                 allToppings = OptionsMapper.getAllToppings(connectionPool);
                 ctx.attribute("allBottoms", allBottoms);

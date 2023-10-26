@@ -75,7 +75,7 @@
                     <td th:text="${orderline.topping.name}"></td>
                     <td th:text="${orderline.totalPrice}"></td>
                     <form method="post">
-                    <td> <button class="delete-btn" type="submit" formaction="/deleteOrderline" name="delete-btn">Del</button></td>
+                    <td> <button class="delete-btn" type="submit" formaction="/deleteOrderlineInCart" name="delete-btn" th:value="${session.cart.getOrderlineList().indexOf(orderline)}">Del</button></td>
                     </form>
                 </tr>
                 <tr>

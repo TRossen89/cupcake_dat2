@@ -14,7 +14,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 
-
 public class OrderMapper {
 
     public static Orderline getOrderline(int bottomId, int toppingId, int quantity, ConnectionPool connectionPool) throws DatabaseException {
@@ -22,7 +21,6 @@ public class OrderMapper {
         double bottomPrice = 0;
         double toppingPrice = 0;
         double totalPrice;
-
 
 
         String bottomName = "";
@@ -79,31 +77,31 @@ public class OrderMapper {
     }
 
 
-    public static boolean placeOrderInDB(List<Orderline> orderlineList, double totalPriceOfOrder, User currentUser, ConnectionPool connectionPool) throws DatabaseException {
+    public static boolean checkAndPlaceOrderInDB(List<Orderline> orderlineList, double totalPriceOfOrder, User currentUser, ConnectionPool connectionPool) throws DatabaseException {
 
         // Calculating new balance
-
         double newBalance = calculateNewBalance(currentUser, totalPriceOfOrder, connectionPool);
 
         // Checking if user has enough money
-
         if (newBalance >= 0) {
 
             // Setting new balance
             settingBalance(newBalance, currentUser, connectionPool);
 
+            //Inserting order in DB if user has enough money
+            insertingOrderInDB(currentUser, totalPriceOfOrder, connectionPool, orderlineList);
         } else {
+            // Returning false if user doesn't have enough money
             return false;
         }
 
-        //Inserting order in DB if user has enough money
-        insertingOrderInDB(currentUser, totalPriceOfOrder, connectionPool, orderlineList);
-
+        // Returning true if user has enough money
         return true;
     }
 
 
-    private static void insertingOrderInDB(User currentUser, double totalPriceOfOrder, ConnectionPool connectionPool, List<Orderline> orderlineList ) throws DatabaseException{
+    private static void insertingOrderInDB(User currentUser, double totalPriceOfOrder, ConnectionPool connectionPool, List<Orderline> orderlineList) throws DatabaseException {
+
         int generatedOrderId = 0;
 
         long millis = System.currentTimeMillis();
@@ -152,13 +150,13 @@ public class OrderMapper {
             } catch (SQLException e) {
                 throw new DatabaseException("Error when inserting orderline in DB!");
             }
-        }}
-
+        }
+    }
 
 
     private static void settingBalance(double newBalance, User currentUser, ConnectionPool connectionPool) throws DatabaseException {
-        String sql4 = "UPDATE public.user SET balance = ? WHERE id = ?";
 
+        String sql4 = "UPDATE public.user SET balance = ? WHERE id = ?";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql4, Statement.RETURN_GENERATED_KEYS)) {
@@ -173,9 +171,7 @@ public class OrderMapper {
     }
 
 
-
-
-    private static double calculateNewBalance(User currentUser, double totalPriceOfOrder, ConnectionPool connectionPool) throws DatabaseException{
+    private static double calculateNewBalance(User currentUser, double totalPriceOfOrder, ConnectionPool connectionPool) throws DatabaseException {
 
         double oldBalance = 0;
 
@@ -194,10 +190,10 @@ public class OrderMapper {
             }
         } catch (SQLException e) {
             throw new DatabaseException("Error when calculating new balance");
-
         }
 
-        double newBalance = oldBalance-totalPriceOfOrder;
+        double newBalance = oldBalance - totalPriceOfOrder;
+
         return newBalance;
     }
 }
