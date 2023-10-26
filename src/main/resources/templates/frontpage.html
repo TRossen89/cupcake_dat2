@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Frontpage</title>
+  <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+  <link href="../public/css/frontpageStyle.css" th:href="@{/css/frontpageStyle.css}" rel="stylesheet"/>
+</head>
+
+
+<body>
+
+<header>
+    <div class="header-for-all-pages">
+        <div class="header-left-side-btns-box">
+            <button class="home-btn header-btn">Home</button>
+            <button class="orders-btn header-btn" th:if="${#ctx.session.currentUser.role.equals('customer')}" th:value="${#ctx.session.currentUser.id}">Orders</button>
+            <button class="all-orders-btn header-btn" th:if="${#ctx.session.currentUser.role.equals('admin')}" th:value="${#ctx.session.currentUser.id}">Manage</button>
+        </div>
+        <button class="login-btn header-btn">Login</button>
+    </div>
+</header>
+
+
+<div class="center-screen">
+
+<form method="post">
+
+    <button type="submit" formaction="/cupcakeSelection"> Buy </button>
+    <button type="submit" formaction="/login"> Login </button>
+
+    </form>
+</div>
+
+</body>
+</html>
