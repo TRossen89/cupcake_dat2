@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Template</title>
+    <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+
+</head>
+
+<body>
+
+<header>
+    <div class="page-box">
+        <div class="header-for-all-pages">
+            <button class="home-btn">Home</button>
+        </div>
+    </div>
+</header>
+<br>
+<div>
+    <h2>Insæt beløb</h2>
+    <form method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username"></input><br>
+        <label for="addbalanse">Add ballance to account:</label>
+        <input type="number" id="addbalanse"></input><br>
+        <button type="submit" formaction="/addbalance">Submit</button>
+
+    </form>
+</div>
+<br>
+<div>
+    <h2>Alle ordre</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Order id</th>
+                <th>Order quantaty</th>
+                <th>Order topping</th>
+                <th>Order bottom</th>
+                <th>Order total price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="order : ${orderlines}">
+                <td th:text="${order.id}">Order id</td>
+                <td th:text="${order.quantatiy}">Order quantaty</td>
+                <td th:text="${order.topping}">Order topping</td>
+                <td th:text="${order.bottom}">Order bottom</td>
+                <td th:text="${order.totalprice}">Order total price</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>

@@ -5,6 +5,9 @@ import app.controllers.CartController;
 import app.controllers.OrderController;
 import app.entities.Cart;
 import app.entities.Orderline;
+
+import app.controllers.UserController;
+
 import app.entities.User;
 import app.persistence.ConnectionPool;
 import io.javalin.Javalin;
@@ -37,8 +40,13 @@ public class Main {
 
         app.post("/addToCart", ctx -> CartController.addToCart(ctx, connectionPool));
         app.post("/deleteOrderlineInCart", ctx-> CartController.deleteOrderline(ctx, connectionPool));
-
         app.post("/buy", ctx -> OrderController.placeOrder(ctx, connectionPool));
+        
+        app.get("/createUser", ctx -> ctx.render("createUser.html"));
+        app.post("/createUser", ctx -> UserController.createUser(ctx, connectionPool));
+     
+        app.get("/adminpage", ctx -> ctx.render("adminpage.html"));
+        
 
     }
 
@@ -51,7 +59,7 @@ public class Main {
         List<Orderline> orderlineList = new ArrayList<>();
         Cart cart = new Cart(orderlineList);
         ctx.sessionAttribute("cart", cart);
-        ctx.render("/template.html");
+        ctx.render("/frontpage.html");
 
-    }
 }
+
