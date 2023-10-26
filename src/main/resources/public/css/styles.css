@@ -9,17 +9,29 @@
     justify-content: space-between;
     font-family: "Book Antiqua";
 }
-.home-btn{
-    margin-left: 10vw;
+
+header-left-side-btns-box{
+    border: solid cadetblue;
+}
+
+.header-btn{
     height: 5vw;
     width: 10vw;
+
+}
+.home-btn{
+    margin-left: 3vw;
+
+}
+
+.manage-btn{
+
 }
 
 .login-btn{
-    margin-right: 10vw;
-    height: 5vw;
-    width: 10vw;
+    margin-right: 3vw;
     background-color: blue;
+    color: white;
 }
 
 table, th, td {
