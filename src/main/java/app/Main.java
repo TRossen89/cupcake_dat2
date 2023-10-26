@@ -2,8 +2,10 @@ package app;
 
 import app.config.ThymeleafConfig;
 import app.controllers.UserControler;
+import app.entities.User;
 import app.persistence.ConnectionPool;
 import io.javalin.Javalin;
+import io.javalin.http.Context;
 import io.javalin.rendering.template.JavalinThymeleaf;
 
 public class Main {
@@ -25,11 +27,21 @@ public class Main {
 
         // Routing
 
-        app.get("/", ctx ->  ctx.render("index.html"));
+        app.get("/", ctx ->  renderFrontPage(ctx));
       
         app.get("/createUser", ctx -> ctx.render("createUser.html"));
         app.post("/createUser", ctx -> UserControler.createUser(ctx, connectionPool));
       
         app.get("/adminpage", ctx -> ctx.render("adminpage.html"));
     }
+
+
+    public static void renderFrontPage(Context ctx) {
+
+        User currentUser = new User(1, "guest", "1234sdf2338jdsvw34599458490sks", "customer", 200.0);
+        ctx.sessionAttribute("currentUser", currentUser);
+        ctx.render("/frontpage.html");
+    }
+
 }
+
