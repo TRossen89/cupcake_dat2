@@ -1,7 +1,7 @@
 package app;
 
 import app.config.ThymeleafConfig;
-import app.controllers.UserControler;
+import app.controllers.UserController;
 import app.entities.User;
 import app.persistence.ConnectionPool;
 import io.javalin.Javalin;
@@ -30,7 +30,7 @@ public class Main {
         app.get("/", ctx ->  renderFrontPage(ctx));
       
         app.get("/createUser", ctx -> ctx.render("createUser.html"));
-        app.post("/createUser", ctx -> UserControler.createUser(ctx, connectionPool));
+        app.post("/createUser", ctx -> UserController.createUser(ctx, connectionPool));
       
         app.get("/adminpage", ctx -> ctx.render("adminpage.html"));
     }
