@@ -72,6 +72,7 @@ public class CartController {
         orderlineListToDeleteFrom.remove(indexOfOrderline);
 
         try {
+
             allBottoms = OptionsMapper.getAllBottoms(connectionPool);
             allToppings = OptionsMapper.getAllToppings(connectionPool);
 

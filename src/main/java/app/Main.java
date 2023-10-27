@@ -47,14 +47,14 @@ public class Main {
 
         app.get("/createUser", ctx -> ctx.render("createUser.html"));
         app.post("/createUser", ctx -> UserController.createUser(ctx, connectionPool));
-  
-        app.get("/", ctx ->  renderFrontPage(ctx));  
+
         app.post("/login", ctx -> UserController.login(ctx, connectionPool));
-        
+        app.get("/login.html", ctx->ctx.render("login.html"));
+
         app.post("/addToCart", ctx -> CartController.addToCart(ctx, connectionPool));
-        app.post("/deleteOrderlineInCart", ctx-> CartController.deleteOrderline(ctx, connectionPool));
+        app.post("/deleteOrderlineInCart", ctx -> CartController.deleteOrderline(ctx, connectionPool));
         app.post("/buy", ctx -> OrderController.placeOrder(ctx, connectionPool));
-        
+
         app.get("/adminpage", ctx -> AdminControler.renderAdminPage(ctx, connectionPool));
         app.post("/adminOrderLine", ctx -> AdminControler.getOrderLine(ctx, connectionPool));
 
@@ -71,5 +71,6 @@ public class Main {
         ctx.sessionAttribute("cart", cart);
         ctx.render("/frontpage.html");
 
+    }
 }
 

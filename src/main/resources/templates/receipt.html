@@ -6,6 +6,7 @@
     <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
 
 </head>
+
 <body>
 <div class="page-box">
     <header>
@@ -21,7 +22,7 @@
                 <tr>
                     <th>Cart</th>
                 </tr>
-                <tr th:each="orderline: ${#ctx.session.orderlineList}">
+                <tr th:each="orderline: ${#ctx.session.cart.getOrderlineList()}">
                     <td th:text="${orderline.topping}"></td>
                     <td th:text="${orderline.bottom}"></td>
                     <td th:text="${orderline.quantity}"></td>
@@ -34,13 +35,14 @@
         </div>
 
     </div>
-
+<!--
     <div>
         <form method="post">
             <p>Your order is ready at:</p>
             <p th:text="${#ctx.receiptController.timeReady}"></p>
         </form>
     </div>
+    -->
 </div>
 
 </body>
