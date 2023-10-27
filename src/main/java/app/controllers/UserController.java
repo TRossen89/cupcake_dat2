@@ -35,8 +35,8 @@ public class UserController {
 
             List<Topping> allToppings = OptionsMapper.getAllToppings(connectionPool);
             List<Bottom> allBottoms = OptionsMapper.getAllBottoms(connectionPool);
-            ctx.attribute("allBottoms", allBottoms);
-            ctx.attribute("allToppings", allToppings);
+            ctx.sessionAttribute("allBottoms", allBottoms);
+            ctx.sessionAttribute("allToppings", allToppings);
 
             ctx.redirect("/userpage");
             
