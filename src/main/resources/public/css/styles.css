@@ -35,6 +35,20 @@ header-left-side-btns-box{
     margin-right: 3vw;
     background-color: blue;
     color: white;
+
+}
+
+.orders-btn{
+    height: 5vw;
+    width: 10vw;
+    margin-left: 1.5vw;
+
+}
+
+.all-orders-btn{
+    height: 5vw;
+    width: 10vw;
+    margin-left: 1.5vw;
 }
 
 table, th, td {
