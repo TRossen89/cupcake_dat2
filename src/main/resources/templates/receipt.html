@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Receipt</title>
@@ -22,14 +22,14 @@
                 <tr>
                     <th>Cart</th>
                 </tr>
-                <tr th:each="orderline: ${#ctx.session.cart.getOrderlineList()}">
-                    <td th:text="${orderline.topping}"></td>
-                    <td th:text="${orderline.bottom}"></td>
+                <tr th:each="orderline: ${#ctx.receipt.getOrderlineList()}">
+                    <td th:text="${orderline.bottom.name}"></td>
+                    <td th:text="${orderline.topping.name}"></td>
                     <td th:text="${orderline.quantity}"></td>
                     <td th:text="${orderline.totalprice}"></td>
                 </tr>
                 <tr>
-                    <td> Total Price: </td>
+                    <td th:text="'Total Price:' + ${ctx.receipt.totalPriceOfCart}"></td>
                 </tr>
             </table>
         </div>
