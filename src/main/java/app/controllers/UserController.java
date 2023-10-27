@@ -38,7 +38,11 @@ public class UserController {
             ctx.attribute("allBottoms", allBottoms);
             ctx.attribute("allToppings", allToppings);
 
-            ctx.redirect("/userpage");
+            if(user.getRole().equals("admin")){
+                ctx.redirect("/adminpage");
+            } else {
+                ctx.redirect("/userpage");
+            }
             
         }
         catch (DatabaseException e)
