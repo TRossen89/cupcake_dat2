@@ -4,28 +4,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <meta charset="UTF-8">
 <title>Login</title>
-<link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+<link href="../public/css/loginStyle.css" th:href="@{/css/loginStyle.css}" rel="stylesheet"/>
 <head>
 <body>
+<div class="Background">
+<div class="center-screen">
 
-<h1>Login</h1>
 
-<form method="post">
 
+<form class="big" method="post">
+    <h1 style=font-size:70px;> Login</h1>
+  
     <label for="username">Username:</label><br>
-    <input type="text" id="username" name="username"><br>
+    <input type="text" class="login-input" id="username" name="username"><br>
 
     <label for="pwd">Password:</label><br>
-    <input type="password" id="pwd" name="password"><br><br>
+    <input type="password" class="login-input" id="pwd" name="password"><br><br>
 
     <button type="submit" class="btn" formaction="/login">Login</button>
 
 </form>
+  
+</div>
+</div>
 
 <button type="submit" class="signupbtn">Sign Up</button>
 
 <p th:text="${#ctx.message}"></p>
-
 
 </body>
 </html>

@@ -1,0 +1,39 @@
+.center-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 75vh;
+    text-align: center;
+
+}
+.Background {
+    background-image: url("../images/Skærmbillede 2023-10-27 132649.png");
+    background-size: cover;
+    margin: 0 auto;
+    height: 100vh;
+    min-width: 100%;
+}
+
+.button{
+    background-color: #DE95A2;
+    color: black;
+    border-radius: 12px;
+    padding: 0.5vw 2.5vw;
+    font-size: 20px;
+}
+.big {
+    font-size: 20px;
+}
+
+.login-input{
+    width: 20vw;
+    height: 2.5vw;
+
+
+}
+h1 {
+
+    font-size: 40px;
+
+}
