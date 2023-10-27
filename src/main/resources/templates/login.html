@@ -7,21 +7,23 @@
 <link href="../public/css/loginStyle.css" th:href="@{/css/loginStyle.css}" rel="stylesheet"/>
 <head>
 <body>
-
+<div class="Background">
 <div class="center-screen">
-<h1>Login</h1>
 
-<form  action="/action_page.php">
+
+
+<form class="big"  action="/action_page.php">
+    <h1 style=font-size:70px;> Login</h1>
     <label for="username">Username:</label><br>
-    <input type="text" id="username" name="username"><br>
+    <input type="text" class="login-input" id="username" name="username"><br>
     <label for="pwd">Password:</label><br>
-    <input type="password" id="pwd" name="pwd"><br><br>
-    <input type="submit" value="login">
-    <button type="submit" class="signupbtn">Sign Up</button>
+    <input type="password" class="login-input" id="pwd" name="pwd"><br><br>
+    <input class="button" type="submit" value="login">
+    <button type="submit" class="button">Sign Up</button>
 
 </form>
 
 </div>
-
+</div>
 </body>
 </html>
