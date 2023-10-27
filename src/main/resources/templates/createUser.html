@@ -10,10 +10,12 @@
 <body>
 
 <h1>Create user</h1>
-<form>
-    <input type="text" name="username" placeholder="username"/>
-    <input type="password" name="password" placeholder="password"/>
-    <button class="create-user">Create user</button>
+<form method="post">
+    <input type="text" name="username" placeholder="username"/><br>
+    <input type="password" name="password" placeholder="password"/><br>
+    <label for="isadmin">Er du administartor</label>
+    <input type="checkbox" id="isadmin" name="isadmin"><br>
+    <button type="submit" formaction="/createUser" class="create-user">Create user</button>
 
     <p th:text="${#ctx.message}"></p>
 

@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5b64118d-df16-4250-a6db-244cdf8f627b" name="Changes" comment="package structure, Javalin and Thymeleaf">
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/create user.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/createUser.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/public/css/frontpageStyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/frontpage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,9 +17,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Class" />
         <option value="HTML File" />
         <option value="CSS File" />
-        <option value="Class" />
       </list>
     </option>
   </component>
@@ -31,13 +33,6 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
-  </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="workspaceImportEnabled" value="true" />
-      </MavenImportingSettings>
-    </option>
   </component>
   <component name="ProjectId" id="2XCl8B6pAbO4aoUzhyFVWoDI35d" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">

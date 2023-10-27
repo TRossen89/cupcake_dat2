@@ -1,11 +1,21 @@
 package app;
 
+import java.sql.SQLException;
+
 import app.config.ThymeleafConfig;
+
 import app.controllers.CartController;
 import app.controllers.OrderController;
 import app.entities.Cart;
 import app.entities.Orderline;
+
+import app.controllers.UserController;
+
+import app.controllers.AdminControler;
+import app.persistence.AdminMapper;
+
 import app.entities.User;
+
 import app.persistence.ConnectionPool;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
@@ -23,6 +33,7 @@ public class Main {
 
     private static final ConnectionPool connectionPool = ConnectionPool.getInstance(USER, PASSWORD, URL, DB);
 
+
     public static void main(String[] args) {
 
 
@@ -37,8 +48,14 @@ public class Main {
 
         app.post("/addToCart", ctx -> CartController.addToCart(ctx, connectionPool));
         app.post("/deleteOrderlineInCart", ctx-> CartController.deleteOrderline(ctx, connectionPool));
-
         app.post("/buy", ctx -> OrderController.placeOrder(ctx, connectionPool));
+        
+        app.get("/createUser", ctx -> ctx.render("createUser.html"));
+        app.post("/createUser", ctx -> UserController.createUser(ctx, connectionPool));
+
+      
+        app.get("/adminpage", ctx -> AdminControler.renderAdminPage(ctx, connectionPool));
+        app.post("/adminOrderLine", ctx -> AdminControler.getOrderLine(ctx, connectionPool));
 
     }
 
@@ -51,7 +68,7 @@ public class Main {
         List<Orderline> orderlineList = new ArrayList<>();
         Cart cart = new Cart(orderlineList);
         ctx.sessionAttribute("cart", cart);
-        ctx.render("/template.html");
+        ctx.render("/frontpage.html");
 
-    }
 }
+
