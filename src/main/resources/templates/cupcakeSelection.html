@@ -11,18 +11,9 @@
 
 <body>
 
-<div class="page-box">
-    <header>
-        <div class="header-for-all-pages">
-            <div>
-            <button class="home-btn">Home</button>
-            <button class="orders-btn" th:if="${#ctx.session.currentUser.role.equals('customer')}" th:value="${#ctx.session.currentUser.id}">Orders</button>
-            <button class="all-orders-btn" th:if="${#ctx.session.currentUser.role.equals('admin')}" th:value="${#ctx.session.currentUser.id}">All orders</button>
-            </div>
-            <button class="login-btn">Login</button>
-        </div>
-    </header>
-
+    <div class="page-box">
+    <div th:replace="~{frontpage :: header}"></div>
+    
     <div class="under-header-box">
 
         <div class="selector-box">
