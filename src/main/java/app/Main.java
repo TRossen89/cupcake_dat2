@@ -59,7 +59,7 @@ public class Main {
         app.post("/createUser", ctx -> UserController.createUser(ctx, connectionPool));
 
         app.post("/addToCart", ctx -> CartController.addToCart(ctx, connectionPool));
-        app.post("/deleteOrderlineInCart", ctx-> CartController.deleteOrderline(ctx, connectionPool));
+        app.post("/deleteOrderlineInCart", ctx -> CartController.deleteOrderline(ctx, connectionPool));
         app.post("/buy", ctx -> OrderController.placeOrder(ctx, connectionPool));
 
         app.get("/adminpage", ctx -> AdminControler.renderAdminPage(ctx, connectionPool));
@@ -69,7 +69,6 @@ public class Main {
 
 
     public static void renderFrontPage(Context ctx) {
-
         ctx.render("/frontpage.html");
     }
 }

@@ -9,7 +9,14 @@ public class Orderline {
     public int quantity;
     public double totalPrice;
 
-    public Orderline(int id, String bottom, String topping, int quantity, double totalPrice) {
+    public Orderline(Bottom bottom, Topping topping, int quantity, double totalPrice) {
+
+        this.bottom = bottom;
+        this.topping = topping;
+        this.quantity = quantity;
+        this.totalPrice = totalPrice;
+    }
+    public Orderline(int id, Bottom bottom, Topping topping, int quantity, double totalPrice) {
         this.id = id;
 
         this.bottom = bottom;
