@@ -5,6 +5,7 @@ import app.exceptions.DatabaseException;
 import app.persistence.ConnectionPool;
 import app.persistence.OptionsMapper;
 import app.persistence.OrderMapper;
+import app.persistence.OrderlineMapper;
 import io.javalin.http.Context;
 
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public class CartController {
 
         try {
 
-            Orderline newOrderline = OrderMapper.getOrderline(bottomId, toppingId, quantity, connectionPool);
+            Orderline newOrderline = OrderlineMapper.getOrderline(bottomId, toppingId, quantity, connectionPool);
             cart.addToCart(newOrderline);
             ctx.sessionAttribute("cart", cart);
 

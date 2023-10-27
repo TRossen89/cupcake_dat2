@@ -17,7 +17,7 @@ public class OptionsMapper {
 
         List<Topping> allToppings = new ArrayList<>();
 
-        String sql = "SELECT * FROM \"topping\"";
+        String sql = "SELECT * FROM topping";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -42,7 +42,7 @@ public class OptionsMapper {
 
         List<Bottom> allBottoms = new ArrayList<>();
 
-        String sql = "SELECT * FROM \"bottom\"";
+        String sql = "SELECT * FROM bottom";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
