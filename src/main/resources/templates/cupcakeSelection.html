@@ -27,12 +27,12 @@
             <form method="post" class="selector-form">
                 <select class="selector bottom-selector" name="bottom" >
                     <option selected="selected">Choose bottom</option>
-                    <option th:each="bottom: ${#ctx.allBottoms}" th:value="${bottom.id}" th:text="${bottom.getName()+ ' ('+ bottom.getPrice() + '$)'}"></option>
+                    <option th:each="bottom: ${#ctx.session.allBottoms}" th:value="${bottom.id}" th:text="${bottom.getName()+ ' ('+ bottom.getPrice() + '$)'}"></option>
                 </select>
 
                 <select class="selector topping-selector" name="topping">
                     <option selected="selected">Choose topping</option>
-                    <option th:each="topping: ${#ctx.allToppings}" th:value="${topping.id}" th:text="${topping.getName()+ ' ('+ topping.getPrice() + '$)'}" ></option><
+                    <option th:each="topping: ${#ctx.session.allToppings}" th:value="${topping.id}" th:text="${topping.getName()+ ' ('+ topping.getPrice() + '$)'}" ></option><
                 </select>
                 <input class="quantity-selector" name="quantity" value="1">
 
