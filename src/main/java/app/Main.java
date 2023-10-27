@@ -1,8 +1,10 @@
 package app;
 
+import java.sql.SQLException;
 import app.config.ThymeleafConfig;
-import app.controllers.UserController;
-
+import app.controllers.AdminControler;
+import app.controllers.UserControler;
+import app.persistence.AdminMapper;
 import app.entities.User;
 import app.persistence.ConnectionPool;
 import io.javalin.Javalin;
@@ -19,6 +21,7 @@ public class Main {
     private static final ConnectionPool connectionPool = ConnectionPool.getInstance(USER, PASSWORD, URL, DB);
     public static void main(String[] args)
     {
+
         // Initializing Javalin and Jetty webserver
 
         Javalin app = Javalin.create(config -> {
@@ -35,9 +38,9 @@ public class Main {
       
         app.get("/createUser", ctx -> ctx.render("createUser.html"));
         app.post("/createUser", ctx -> UserController.createUser(ctx, connectionPool));
-      
-        app.get("/adminpage", ctx -> ctx.render("adminpage.html"));
 
+        app.get("/adminpage", ctx -> AdminControler.renderAdminPage(ctx, connectionPool));
+        app.post("/adminOrderLine", ctx -> AdminControler.getOrderLine(ctx, connectionPool));
     }
 
 
