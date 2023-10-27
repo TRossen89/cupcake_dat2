@@ -1,6 +1,8 @@
 package app.controllers;
 
 
+import app.entities.Cart;
+import app.entities.Orderline;
 import app.entities.Bottom;
 import app.entities.Topping;
 import app.entities.User;
@@ -13,12 +15,19 @@ import io.javalin.http.Context;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserController {
     public static void login(Context ctx, ConnectionPool connectionPool)
     {
+        List<Orderline> orderlineList = new ArrayList<>();
+        Cart cart = new Cart(orderlineList);
+        ctx.sessionAttribute("cart", cart);
+        
         String name = ctx.formParam("username");
         String password = ctx.formParam("password");
+
         try
         {
             User user = UserMapper.login(name, password, connectionPool);
@@ -29,7 +38,8 @@ public class UserController {
             ctx.attribute("allBottoms", allBottoms);
             ctx.attribute("allToppings", allToppings);
 
-            ctx.render("/cupcakeSelection.html");
+            ctx.redirect("/userpage");
+            
         }
         catch (DatabaseException e)
         {
@@ -62,6 +72,13 @@ public class UserController {
             System.out.println(e.getMessage());
             ctx.render("createUser.html");
         }
+    }
+
+    public static void logout(Context ctx)
+    {
+        // Invalidate session
+        ctx.req().getSession().invalidate();
+        ctx.redirect("/");
     }
 }
 
