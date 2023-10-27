@@ -1,0 +1,24 @@
+.center-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 80vh;
+}
+
+.Background {
+    background-image: url("../images/Cupcakegif.gif");
+    background-size: cover;
+    margin: 0 auto;
+    height: 100vh;
+    min-width: 100%;
+}
+
+.ButtonClass{
+    color: black;
+    border-radius: 12px;
+    padding: 50px 80px;
+    background-color: pink;
+    font-size: 20px;
+
+}
