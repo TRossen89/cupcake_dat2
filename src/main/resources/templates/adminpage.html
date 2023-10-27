@@ -34,20 +34,20 @@
     <table>
         <thead>
             <tr>
+                <th>User who made the order</th>
                 <th>Order id</th>
-                <th>Order quantaty</th>
-                <th>Order topping</th>
-                <th>Order bottom</th>
-                <th>Order total price</th>
+                <th>Order date</th>
+                <th>Order status</th>
+                <th>Show order lins in order</th>
             </tr>
         </thead>
         <tbody>
-            <tr th:each="order : ${orderlines}">
+            <tr th:each="order : ${#ctx.session.orders}">
+                <td th:text="${order.username}">User</td>
                 <td th:text="${order.id}">Order id</td>
-                <td th:text="${order.quantatiy}">Order quantaty</td>
-                <td th:text="${order.topping}">Order topping</td>
-                <td th:text="${order.bottom}">Order bottom</td>
-                <td th:text="${order.totalprice}">Order total price</td>
+                <td th:text="${order.date}">Order date</td>
+                <td th:text="${order.status}">Order status</td>
+                <td><form method="post"> <input type="number" name="orderid" hidden th:attr="value=${order.id}"></input><button type="submit" formaction="/adminOrderLine">Show orderlines</button></form></td>
             </tr>
         </tbody>
     </table>
