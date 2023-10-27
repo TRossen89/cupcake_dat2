@@ -47,12 +47,7 @@ public class Main {
 
         // Routing
         app.get("/", ctx -> renderFrontPage(ctx));
-
-        app.get("/createUser", ctx -> ctx.render("createUser.html"));
-        app.post("/createUser", ctx -> UserController.createUser(ctx, connectionPool));
   
-        app.get("/", ctx ->  renderFrontPage(ctx));  
-
         app.get("/login", ctx -> ctx.render("login.html"));
         app.post("/login", ctx -> UserController.login(ctx, connectionPool));
 
@@ -75,11 +70,7 @@ public class Main {
 
     public static void renderFrontPage(Context ctx) {
 
-        List<Orderline> orderlineList = new ArrayList<>();
-        Cart cart = new Cart(orderlineList);
-        ctx.sessionAttribute("cart", cart);
-
         ctx.render("/frontpage.html");
-
+    }
 }
 
