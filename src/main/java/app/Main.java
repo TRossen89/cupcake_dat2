@@ -3,8 +3,7 @@ package app;
 import java.sql.SQLException;
 import app.config.ThymeleafConfig;
 import app.controllers.AdminControler;
-import app.controllers.UserControler;
-import app.persistence.AdminMapper;
+import app.controllers.UserController;
 import app.entities.User;
 import app.persistence.ConnectionPool;
 import io.javalin.Javalin;
@@ -33,11 +32,17 @@ public class Main {
 
 
         app.get("/", ctx ->  renderFrontPage(ctx));  
+
+        app.get("/login", ctx -> ctx.render("login.html"));
         app.post("/login", ctx -> UserController.login(ctx, connectionPool));
-        
+
+        app.get("/logout", ctx -> UserController.logout(ctx));
+
+        app.get("/userpage", ctx -> ctx.render("/cupcakeSelection.html"));
       
         app.get("/createUser", ctx -> ctx.render("createUser.html"));
         app.post("/createUser", ctx -> UserController.createUser(ctx, connectionPool));
+
 
         app.get("/adminpage", ctx -> AdminControler.renderAdminPage(ctx, connectionPool));
         app.post("/adminOrderLine", ctx -> AdminControler.getOrderLine(ctx, connectionPool));
@@ -45,9 +50,6 @@ public class Main {
 
 
     public static void renderFrontPage(Context ctx) {
-
-        User currentUser = new User(1, "guest", "1234sdf2338jdsvw34599458490sks", "customer", 200.0);
-        ctx.sessionAttribute("currentUser", currentUser);
         ctx.render("/frontpage.html");
     }
 

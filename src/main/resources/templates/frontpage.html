@@ -11,14 +11,18 @@
 
 <body>
 <div class="Background">
-<header>
+<header th:frontpage="header">
     <div class="header-for-all-pages">
         <div class="header-left-side-btns-box">
-            <button class="home-btn header-btn">Home</button>
-            <button class="orders-btn header-btn" th:if="${#ctx.session.currentUser.role.equals('customer')}" th:value="${#ctx.session.currentUser.id}">Orders</button>
-            <button class="all-orders-btn header-btn" th:if="${#ctx.session.currentUser.role.equals('admin')}" th:value="${#ctx.session.currentUser.id}">Manage</button>
+           <a href="/"> <button class="home-btn header-btn">Home</button></a>
+           <a th:if="${!#ctx.session.isEmpty()}">
+               <button class="orders-btn header-btn" th:if="${#ctx.session.currentUser.role.equals('customer') || #ctx.session.currentUser.role.equals('user')}" th:value="${#ctx.session.currentUser.id}">Orders</button>
+               <button class="all-orders-btn header-btn" th:if="${#ctx.session.currentUser.role.equals('admin')}" th:value="${#ctx.session.currentUser.id}">Manage</button>
+           </a>
         </div>
-        <button class="login-btn header-btn">Login</button>
+        <a class="header-btn" th:if="${!#ctx.session.isEmpty()}" th:text="${#ctx.session.currentUser.getName()}"></a>
+        <a th:if="${#ctx.session.isEmpty()}" href="/login"><button class="login-btn header-btn">Login</button></a>
+        <a th:if="${!#ctx.session.isEmpty()}" th:href="@{/logout}"><button class="login-btn header-btn">Logout</button></a>
     </div>
 </header>
 
