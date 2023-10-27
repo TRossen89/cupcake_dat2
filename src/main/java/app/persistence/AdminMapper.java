@@ -10,8 +10,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import app.entities.Bottom;
 import app.entities.Order;
 import app.entities.Orderline;
+import app.entities.Topping;
 
 public class AdminMapper {
 
@@ -36,7 +38,7 @@ public class AdminMapper {
     }
 
     public static List<Orderline> getOrderLines(ConnectionPool connectionPool, int oderId) throws SQLException {
-        String sql = "SELECT OL.id as id, OL.quantity, T.name as topping, B.name as bottom, OL.total_price " +
+        String sql = "SELECT OL.id as id, OL.quantity, T.name as topping, T.id as tid, T.price as tprice, B.name as bottom, B.id as bid, B.price as bprice, OL.total_price " +
                      "FROM orderlines OL " + 
                          "JOIN topping T ON OL.topping_id = T.id " + 
                          "JOIN bottom B ON OL.bottom_id = B.id " +
@@ -48,10 +50,18 @@ public class AdminMapper {
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
                     int id = resultSet.getInt("id");
-                    String bottom = resultSet.getString("bottom");
-                    String topping = resultSet.getString("topping");
+                    int bottomId = resultSet.getInt("bid");
+                    int toppingId = resultSet.getInt("tid");
+                    double bottomPrice = resultSet.getDouble("bprice");
+                    double toppingPrice = resultSet.getDouble("tprice");
+                    String bottomName = resultSet.getString("bottom");
+                    String toppingName = resultSet.getString("topping");
                     int quantity = resultSet.getInt("quantity");
                     double totalPrice = resultSet.getDouble("total_price");
+
+                    Bottom bottom = new Bottom(bottomId, bottomName, bottomPrice);
+                    Topping topping = new Topping(toppingId, toppingName, toppingPrice);
+
                     Orderline orderline = new Orderline(id,bottom,topping,quantity,totalPrice);
                     orderlines.add(orderline);
                 }
