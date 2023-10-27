@@ -1,8 +1,8 @@
 package app;
 
 import java.sql.SQLException;
-
 import app.config.ThymeleafConfig;
+
 
 import app.controllers.CartController;
 import app.controllers.OrderController;
@@ -15,7 +15,6 @@ import app.controllers.AdminControler;
 import app.persistence.AdminMapper;
 
 import app.entities.User;
-
 import app.persistence.ConnectionPool;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
@@ -46,14 +45,16 @@ public class Main {
         // Routing
         app.get("/", ctx -> renderFrontPage(ctx));
 
+        app.get("/createUser", ctx -> ctx.render("createUser.html"));
+        app.post("/createUser", ctx -> UserController.createUser(ctx, connectionPool));
+  
+        app.get("/", ctx ->  renderFrontPage(ctx));  
+        app.post("/login", ctx -> UserController.login(ctx, connectionPool));
+        
         app.post("/addToCart", ctx -> CartController.addToCart(ctx, connectionPool));
         app.post("/deleteOrderlineInCart", ctx-> CartController.deleteOrderline(ctx, connectionPool));
         app.post("/buy", ctx -> OrderController.placeOrder(ctx, connectionPool));
         
-        app.get("/createUser", ctx -> ctx.render("createUser.html"));
-        app.post("/createUser", ctx -> UserController.createUser(ctx, connectionPool));
-
-      
         app.get("/adminpage", ctx -> AdminControler.renderAdminPage(ctx, connectionPool));
         app.post("/adminOrderLine", ctx -> AdminControler.getOrderLine(ctx, connectionPool));
 
