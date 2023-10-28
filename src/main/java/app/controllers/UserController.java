@@ -16,6 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserController {
+    private static User currentUser;
+
+    public UserController() {
+        this.currentUser = null;
+    }
+
     public static void login(Context ctx, ConnectionPool connectionPool)
     {
         List<Orderline> orderlineList = new ArrayList<>();
@@ -28,6 +34,7 @@ public class UserController {
         try
         {
             User user = UserMapper.login(name, password, connectionPool);
+            currentUser = user;
             ctx.sessionAttribute("currentUser", user);
 
             List<Topping> allToppings = OptionsMapper.getAllToppings(connectionPool);
@@ -82,10 +89,14 @@ public class UserController {
         ctx.redirect("/");
     }
 
-    public static void renderUserpage(Context ctx, ConnectionPool connectionPool, int userId) {
+    public static void renderUserpage(Context ctx, ConnectionPool connectionPool) {
         List<Order> orders = null;
         try {
-            orders = UserMapper.getUserOrders(userId, connectionPool);
+            // Korrekt måde at få adgang til userID?
+            if(currentUser == null) {
+                throw new RuntimeException("no user logged in");
+            }
+            orders = UserMapper.getUserOrders(currentUser.getId(), connectionPool);
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -93,7 +104,7 @@ public class UserController {
         if(orders == null){
             //TODO: handle if order are null
         }
-        ctx.sessionAttribute("user_orders", orders);
+        ctx.sessionAttribute("userOrders", orders);
         ctx.render("userPage.html");
     }
 }
