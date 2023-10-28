@@ -1,13 +1,10 @@
 package app.controllers;
 
 
-import app.entities.Cart;
-import app.entities.Orderline;
-import app.entities.Bottom;
-import app.entities.Topping;
-import app.entities.User;
+import app.entities.*;
 
 import app.exceptions.DatabaseException;
+import app.persistence.AdminMapper;
 import app.persistence.ConnectionPool;
 import app.persistence.OptionsMapper;
 import app.persistence.UserMapper;
@@ -84,5 +81,22 @@ public class UserController {
         ctx.req().getSession().invalidate();
         ctx.redirect("/");
     }
+
+    public static void renderUserpage(Context ctx, ConnectionPool connectionPool, int userId) {
+        List<Order> orders = null;
+        try {
+            orders = UserMapper.getUserOrders(userId, connectionPool);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        if(orders == null){
+            //TODO: handle if order are null
+        }
+        ctx.sessionAttribute("user_orders", orders);
+        ctx.render("userPage.html");
+    }
 }
+
+
 
