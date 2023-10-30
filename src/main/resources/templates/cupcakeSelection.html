@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <meta charset="UTF-8">
+    <title>Buy Cupcake</title>
+    <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <link href="../public/css/cupcakeSelectionStyle.css" th:href="@{/css/cupcakeSelectionStyle.css}" rel="stylesheet"/>
+
+<head>
+
+
+<body>
+
+    <div class="page-box">
+    <div th:replace="~{frontpage :: header}"></div>
+    
+    <div class="under-header-box">
+
+        <div class="selector-box">
+            <div class="selector-text-box">
+                <span class="span-bottom span-selector-text">Bottom</span>
+                <span class="span-topping span-selector-text">Topping</span>
+                <span class="span-quantity span-selector-text">Quantity</span>
+            </div>
+
+
+            <form method="post" class="selector-form">
+                <select class="selector bottom-selector" name="bottom" >
+                    <option selected="selected">Choose bottom</option>
+                    <option th:each="bottom: ${#ctx.session.allBottoms}" th:value="${bottom.id}" th:text="${bottom.getName()+ ' ('+ bottom.getPrice() + '$)'}"></option>
+                </select>
+
+                <select class="selector topping-selector" name="topping">
+                    <option selected="selected">Choose topping</option>
+                    <option th:each="topping: ${#ctx.session.allToppings}" th:value="${topping.id}" th:text="${topping.getName()+ ' ('+ topping.getPrice() + '$)'}" ></option><
+                </select>
+                <input class="quantity-selector" name="quantity" value="1">
+
+
+                <button class="add-btn" formaction="/addToCart">Add to cart</button>
+
+            </form>
+
+
+            <p th:text="${#ctx.noMoney}"></p>
+        </div>
+
+
+        <div class="cart-box">
+            <div class="cart-text-box">
+                <p>Cart</p>
+            </div>
+
+            <table class="cart-table">
+                <tr>
+                    <th>Qty</th>
+                    <th></th>
+                    <th>Bottom</th>
+                    <th>Topping</th>
+                    <th>Price</th>
+                    <th>Del</th>
+                </tr>
+
+                <tr th:each="orderline: ${#ctx.session.cart.getOrderlineList()}">
+                    <td th:text="${orderline.quantity}"></td>
+                    <td>X</td>
+                    <td th:text="${orderline.bottom.name}"></td>
+                    <td th:text="${orderline.topping.name}"></td>
+                    <td th:text="${orderline.totalPrice}"></td>
+                    <form method="post">
+                    <td> <button class="delete-btn" type="submit" formaction="/deleteOrderlineInCart" name="delete-btn" th:value="${session.cart.getOrderlineList().indexOf(orderline)}">Del</button></td>
+                    </form>
+                </tr>
+                <tr>
+                    <td colspan="6" th:text="${'Total price: ' + #ctx.session.cart.getTotalPriceOfCart()}"></td>
+                </tr>
+            </table>
+
+            <form method="post" class="pay-btn-form">
+                <button type="submit" class="pay-btn" formaction="/buy">Pay</button>
+            </form>
+        </div>
+
+        <div class="error-msg-box">
+            <p th:text="${#ctx.dbConnectionError}"></p>
+
+        </div>
+    </div>
+
+
+    <p th:text="${#ctx.dbErrorMsg}"></p>
+
+
+</div>
+
+</body>
+</html>

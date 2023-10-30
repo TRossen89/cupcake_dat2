@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Receipt</title>
+    <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+
+</head>
+
+<body>
+<div class="page-box">
+    <header>
+        <div class="header-for-all-pages">
+            <button class="home-btn">Home</button>
+            <button class="login-btn">Login</button>
+        </div>
+    </header>
+
+    <div>
+        <div class="cart-box">
+            <table class="cart-table">
+                <tr>
+                    <th>Cart</th>
+                </tr>
+                <tr th:each="orderline: ${#ctx.receipt.getOrderlineList()}">
+                    <td th:text="${orderline.bottom.name}"></td>
+                    <td th:text="${orderline.topping.name}"></td>
+                    <td th:text="${orderline.quantity}"></td>
+                    <td th:text="${orderline.totalprice}"></td>
+                </tr>
+                <tr>
+                    <td th:text="'Total Price:' + ${#ctx.receipt.totalPriceOfCart}"></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+<!--
+    <div>
+        <form method="post">
+            <p>Your order is ready at:</p>
+            <p th:text="${#ctx.receiptController.timeReady}"></p>
+        </form>
+    </div>
+    -->
+</div>
+
+</body>
+</html>
