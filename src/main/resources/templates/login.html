@@ -12,26 +12,28 @@
 <body>
 
 
-
 <div class="background-login">
     <div th:replace="~{frontpage :: header}"></div>
-<div class="center-screen">
-<form class="big" method="post">
-    <h1 style=font-size:70px;> Login</h1>
-  
-    <label for="username">Username:</label><br>
-    <input type="text" class="login-input" id="username" name="username"><br>
 
-    <label for="pwd">Password:</label><br>
-    <input type="password" class="login-input" id="pwd" name="password"><br><br>
+    <div class="center-screen">
+        <form class="big" method="post">
+            <h1 style=font-size:70px;> Login</h1>
 
-    <button type="submit" class="loginFormButton" formaction="/login">Login</button>
-    <button type="submit" class="loginFormButton">Sign Up</button>
-</form>
-  
+            <label for="username">Username:</label><br>
+            <input type="text" class="login-input" id="username" name="username"><br>
+
+            <label for="pwd">Password:</label><br>
+            <input type="password" class="login-input" id="pwd" name="password"><br><br>
+
+            <button type="submit" class="loginFormButton" formaction="/login">Login</button>
+
+            <a href="/createUser">
+                <button type="button" class="loginFormButton">Sign Up</button>
+            </a>
+        </form>
+
+    </div>
 </div>
-</div>
-
 
 
 <p th:text="${#ctx.message}"></p>
