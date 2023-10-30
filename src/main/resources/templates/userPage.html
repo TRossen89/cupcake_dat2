@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Template</title>
+    <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+</head>
+
+<body>
+
+<header>
+    <div th:replace="~{frontpage :: header}"></div>
+</header>
+<div>
+    <h2> <span th:text="${#ctx.session.currentUser.name}"></span>'s Ordre </h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Order date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="order : ${#ctx.session.userOrders}">
+            <td th:text="${order.date}">DATE</td>
+            <td><form method="post"> <input type="number" name="orderid" hidden th:attr="value=${order.id}"></input><button type="submit" formaction="/userOrderlinePage">Show orderlines</button></form></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>

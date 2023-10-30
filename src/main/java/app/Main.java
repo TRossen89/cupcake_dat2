@@ -69,6 +69,9 @@ public class Main {
         app.get("/adminpage", ctx -> AdminControler.renderAdminPage(ctx, connectionPool));
         app.post("/adminOrderLine", ctx -> AdminControler.getOrderLine(ctx, connectionPool));
 
+        app.get("/userPage", ctx -> UserController.renderUserpage(ctx, connectionPool));
+        app.post("/userOrderlinePage", ctx -> UserController.getOrderLine(ctx, connectionPool));
+
     }
 
 

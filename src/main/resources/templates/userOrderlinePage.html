@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Template</title>
+    <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+
+</head>
+
+<body>
+
+<div th:replace="~{frontpage :: header}"></div>
+
+<br>
+<div>
+    <h2>Alle ordre linjer</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Order id</th>
+                <th>Order quantaty</th>
+                <th>Order topping</th>
+                <th>Order bottom</th>
+                <th>Order total price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="orderline : ${#ctx.session.orderlines}">
+                <td th:text="${orderline.id}">id</td>
+                <td th:text="${orderline.quantity}">Order quantaty</td>
+                <td th:text="${orderline.topping.name}">Order topping</td>
+                <td th:text="${orderline.bottom.name}">Order bottom</td>
+                <td th:text="${orderline.totalPrice}">total price</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <a href="/userPage"><button>Back to user</button></a>
+</div>
+
+
+</body>
+</html>

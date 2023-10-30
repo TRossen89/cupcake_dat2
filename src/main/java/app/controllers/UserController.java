@@ -1,13 +1,10 @@
 package app.controllers;
 
 
-import app.entities.Cart;
-import app.entities.Orderline;
-import app.entities.Bottom;
-import app.entities.Topping;
-import app.entities.User;
+import app.entities.*;
 
 import app.exceptions.DatabaseException;
+import app.persistence.AdminMapper;
 import app.persistence.ConnectionPool;
 import app.persistence.OptionsMapper;
 import app.persistence.UserMapper;
@@ -19,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserController {
+
+
     public static void login(Context ctx, ConnectionPool connectionPool)
     {
         List<Orderline> orderlineList = new ArrayList<>();
@@ -84,5 +83,42 @@ public class UserController {
         ctx.req().getSession().invalidate();
         ctx.redirect("/");
     }
+
+    public static void renderUserpage(Context ctx, ConnectionPool connectionPool) {
+        List<Order> orders = null;
+        User user = ctx.sessionAttribute("currentUser");
+        try {
+            orders = UserMapper.getUserOrders(user.getId(), connectionPool);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        if(orders == null){
+            //TODO: handle if order are null
+        }
+        ctx.sessionAttribute("userOrders", orders);
+        ctx.render("userPage.html");
+    }
+
+    public static void getOrderLine(Context ctx, ConnectionPool connectionPool) {
+        List<Orderline> orderlines = null;
+        int orderId = Integer.parseInt(ctx.formParam("orderid"));
+        try {
+            orderlines = UserMapper.getOrderLines(connectionPool, orderId);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        if(orderlines == null){
+            //TODO: handle if order are null
+        }
+        System.out.println(orderlines);
+        ctx.sessionAttribute("orderlines", orderlines);
+        ctx.render("userOrderlinePage.html");
+    }
+
+
 }
+
+
 

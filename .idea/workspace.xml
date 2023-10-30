@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5b64118d-df16-4250-a6db-244cdf8f627b" name="Changes" comment="package structure, Javalin and Thymeleaf">
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/controllers/timeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/receipt.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/receipt.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/controllers/UserController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +83,7 @@
       <workItem from="1698140783280" duration="4840000" />
       <workItem from="1698158679658" duration="1337000" />
       <workItem from="1698173426913" duration="7063000" />
+      <workItem from="1698485535276" duration="1941000" />
     </task>
     <task id="LOCAL-00001" summary="package structure">
       <created>1698146209905</created>
