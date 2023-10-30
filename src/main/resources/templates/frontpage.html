@@ -27,8 +27,8 @@
                 </a>
 
                 <div class="intermediate-header-left-side-btns-box" th:if="${#ctx.session.currentUser.role.equals('customer') || #ctx.session.currentUser.role.equals('user')}">
-                    <a>
-                        <button class="orders-btn header-btn" th:value="${#ctx.session.currentUser.id}">Orders
+                    <a href="/userPage"/>
+                        <button class="orders-btn header-btn"  th:value="${#ctx.session.currentUser.id}">Orders
                         </button>
                     </a>
                     <a href="/cupcakeSelection">
