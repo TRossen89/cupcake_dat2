@@ -10,7 +10,7 @@
 }
 
 .header-for-all-pages {
-    border: solid red;
+    border: solid black;
     display: flex;
     justify-content: space-between;
     font-family: "Book Antiqua";
@@ -37,15 +37,15 @@
 
 
 .header-btn{
-    height: 5vw;
-    width: 10vw;
+    height: 3vw;
+    width: 8vw;
     margin-left: 1.5vw;
 }
 
 
 .home-btn{
-    height: 5vw;
-    width: 10vw;
+    height: 3vw;
+    width: 8vw;
     margin-left: 3vw;
 }
 
@@ -54,10 +54,9 @@
 
 .login-btn{
     margin-right: 3vw;
-    height: 5vw;
-    width: 10vw;
-    background-color: blue;
-    color: white;
+    height: 3vw;
+    width: 8vw;
+    color: black;
 }
 
 /*
