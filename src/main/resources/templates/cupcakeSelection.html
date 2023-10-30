@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    <meta charset="UTF-8">
-    <title>Buy Cupcake</title>
-    <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
-    <link href="../public/css/cupcakeSelectionStyle.css" th:href="@{/css/cupcakeSelectionStyle.css}" rel="stylesheet"/>
+<meta charset="UTF-8">
+<title>Buy Cupcake</title>
+<link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+<link href="../public/css/cupcakeSelectionStyle.css" th:href="@{/css/cupcakeSelectionStyle.css}" rel="stylesheet"/>
 
 <head>
 
 
 <body>
 
-    <div class="page-box">
+<div class="page-box">
     <div th:replace="~{frontpage :: header}"></div>
-    
+
     <div class="under-header-box">
 
         <div class="selector-box">
@@ -25,14 +25,17 @@
 
 
             <form method="post" class="selector-form">
-                <select class="selector bottom-selector" name="bottom" >
+                <select class="selector bottom-selector" name="bottom">
                     <option selected="selected">Choose bottom</option>
-                    <option th:each="bottom: ${#ctx.session.allBottoms}" th:value="${bottom.id}" th:text="${bottom.getName()+ ' ('+ bottom.getPrice() + '$)'}"></option>
+                    <option th:each="bottom: ${#ctx.session.allBottoms}" th:value="${bottom.id}"
+                            th:text="${bottom.getName()+ ' ('+ bottom.getPrice() + '$)'}"></option>
                 </select>
 
                 <select class="selector topping-selector" name="topping">
                     <option selected="selected">Choose topping</option>
-                    <option th:each="topping: ${#ctx.session.allToppings}" th:value="${topping.id}" th:text="${topping.getName()+ ' ('+ topping.getPrice() + '$)'}" ></option><
+                    <option th:each="topping: ${#ctx.session.allToppings}" th:value="${topping.id}"
+                            th:text="${topping.getName()+ ' ('+ topping.getPrice() + '$)'}"></option>
+                    <
                 </select>
                 <input class="quantity-selector" name="quantity" value="1">
 
@@ -68,7 +71,12 @@
                     <td th:text="${orderline.topping.name}"></td>
                     <td th:text="${orderline.totalPrice}"></td>
                     <form method="post">
-                    <td> <button class="delete-btn" type="submit" formaction="/deleteOrderlineInCart" name="delete-btn" th:value="${session.cart.getOrderlineList().indexOf(orderline)}">Del</button></td>
+                        <td>
+                            <button class="delete-btn" type="submit" formaction="/deleteOrderlineInCart"
+                                    name="delete-btn" th:value="${session.cart.getOrderlineList().indexOf(orderline)}">
+                                Del
+                            </button>
+                        </td>
                     </form>
                 </tr>
                 <tr>
@@ -83,13 +91,9 @@
 
         <div class="error-msg-box">
             <p th:text="${#ctx.dbConnectionError}"></p>
-
         </div>
     </div>
-
-
     <p th:text="${#ctx.dbErrorMsg}"></p>
-
 
 </div>
 
