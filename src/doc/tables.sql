@@ -2,6 +2,11 @@
 -- Please log an issue at https://redmine.postgresql.org/projects/pgadmin4/issues/new if you find any bugs, including reproduction steps.
 BEGIN;
 
+DROP TABLE IF EXISTS orderlines;
+DROP TABLE IF EXISTS bottom;
+DROP TABLE IF EXISTS topping;
+DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS public.user;
 
 CREATE TABLE IF NOT EXISTS public.user
 (
@@ -20,6 +25,7 @@ CREATE TABLE IF NOT EXISTS public.orders
     date date NOT NULL,
     status character varying(30) NOT NULL,
     user_id integer NOT NULL,
+    total_price double precision NOT NULL,
     PRIMARY KEY (id)
     );
 
