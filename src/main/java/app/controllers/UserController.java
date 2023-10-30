@@ -16,11 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserController {
-    private static User currentUser;
 
-    public UserController() {
-        this.currentUser = null;
-    }
 
     public static void login(Context ctx, ConnectionPool connectionPool)
     {
@@ -34,7 +30,6 @@ public class UserController {
         try
         {
             User user = UserMapper.login(name, password, connectionPool);
-            currentUser = user;
             ctx.sessionAttribute("currentUser", user);
 
             List<Topping> allToppings = OptionsMapper.getAllToppings(connectionPool);
@@ -91,12 +86,9 @@ public class UserController {
 
     public static void renderUserpage(Context ctx, ConnectionPool connectionPool) {
         List<Order> orders = null;
+        int userId = Integer.parseInt(ctx.sessionAttribute("currentUser.id"));
         try {
-            // Korrekt måde at få adgang til userID?
-            if(currentUser == null) {
-                throw new RuntimeException("no user logged in");
-            }
-            orders = UserMapper.getUserOrders(currentUser.getId(), connectionPool);
+            orders = UserMapper.getUserOrders(userId, connectionPool);
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -107,6 +99,25 @@ public class UserController {
         ctx.sessionAttribute("userOrders", orders);
         ctx.render("userPage.html");
     }
+
+    public static void getOrderLine(Context ctx, ConnectionPool connectionPool) {
+        List<Orderline> orderlines = null;
+        int orderId = Integer.parseInt(ctx.formParam("orderid"));
+        try {
+            orderlines = UserMapper.getOrderLines(connectionPool, orderId);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        if(orderlines == null){
+            //TODO: handle if order are null
+        }
+        System.out.println(orderlines);
+        ctx.sessionAttribute("orderlines", orderlines);
+        ctx.render("userOrderlinePage.html");
+    }
+
+
 }
 
 
