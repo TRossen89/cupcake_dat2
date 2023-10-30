@@ -2,8 +2,8 @@ package app.controllers;
 
 import java.util.Calendar;
 
-public class receiptController {
-    public receiptController() {
+public class ReceiptController {
+    public ReceiptController() {
 
         Calendar currentTime = Calendar.getInstance();
 

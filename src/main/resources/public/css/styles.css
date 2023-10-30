@@ -1,7 +1,10 @@
-.btn{
+/*.btn{
     width: 18vw;
     height: 3vw;
 }
+
+ */
+
 .page-box{
     font-family: "Book Antiqua";
 }
@@ -11,33 +14,53 @@
     display: flex;
     justify-content: space-between;
     font-family: "Book Antiqua";
+    background-color: transparent;
 }
 
-header-left-side-btns-box{
+.header-left-side-btns-box{
+    border: solid cadetblue;
+    display: flex;
+    flex-direction: row;
+
+}.intermediate-header-left-side-btns-box{
+    /*border: solid orange;
+
+     */
+
+
+}
+
+.header-right-side-btns-box{
     border: solid cadetblue;
 }
+
+
 
 .header-btn{
     height: 5vw;
     width: 10vw;
-
+    margin-left: 1.5vw;
 }
-.home-btn{
-    margin-left: 3vw;
 
+
+.home-btn{
+    height: 5vw;
+    width: 10vw;
+    margin-left: 3vw;
 }
 
 .manage-btn{
-
 }
 
 .login-btn{
     margin-right: 3vw;
+    height: 5vw;
+    width: 10vw;
     background-color: blue;
     color: white;
-
 }
 
+/*
 .orders-btn{
     height: 5vw;
     width: 10vw;
@@ -51,6 +74,15 @@ header-left-side-btns-box{
     margin-left: 1.5vw;
 }
 
+.buy-cupcakes-btn{
+    margin-left: 1.5vw;
+
+}
+
+ */
+
+
 table, th, td {
     border: 1px solid;
 }
+

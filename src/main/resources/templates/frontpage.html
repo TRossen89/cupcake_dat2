@@ -11,30 +11,78 @@
 
 <body>
 <div class="Background">
-<header th:frontpage="header">
-    <div class="header-for-all-pages">
-        <div class="header-left-side-btns-box">
-           <a href="/"> <button class="home-btn header-btn">Home</button></a>
-           <a th:if="${!#ctx.session.isEmpty()}">
-               <a href="/userPage"><button class="orders-btn header-btn" th:if="${#ctx.session.currentUser.role.equals('customer') || #ctx.session.currentUser.role.equals('user')}" th:value="${#ctx.session.currentUser.id}">Orders</button></a>
-               <button class="all-orders-btn header-btn" th:if="${#ctx.session.currentUser.role.equals('admin')}" th:value="${#ctx.session.currentUser.id}">Manage</button>
-           </a>
+    <header th:frontpage="header">
+        <div class="header-for-all-pages">
+
+            <div th:if="${#ctx.session.isEmpty()}" class="header-left-side-btns-box">
+                <a href="/">
+                    <button type="button" class="home-btn">Home</button>
+                </a>
+            </div>
+
+            <div th:if="${!#ctx.session.isEmpty()}" class="header-left-side-btns-box">
+                <a th:if="${#ctx.session.currentUser.role.equals('customer') || #ctx.session.currentUser.role.equals('user')}"
+                   href="/">
+                    <button type="button" class="home-btn">Home</button>
+                </a>
+
+                <div class="intermediate-header-left-side-btns-box" th:if="${#ctx.session.currentUser.role.equals('customer') || #ctx.session.currentUser.role.equals('user')}">
+                    <a>
+                        <button class="orders-btn header-btn" th:value="${#ctx.session.currentUser.id}">Orders
+                        </button>
+                    </a>
+                    <a href="/cupcakeSelection">
+                        <button class="buy-cupcakes-btn header-btn">Buy cupcakes</button>
+                    </a>
+                </div>
+
+                <a href="/" th:if="${#ctx.session.currentUser.role.equals('admin')}">
+                    <button type="button" class="home-btn">Home</button>
+                </a>
+                <a th:if="${#ctx.session.currentUser.role.equals('admin')}">
+                    <button class="all-orders-btn header-btn" th:value="${#ctx.session.currentUser.id}">Manage
+                    </button>
+                </a>
+
+            </div>
+
+            <a class="header-btn" th:if="${!#ctx.session.isEmpty()}"
+               th:text="${#ctx.session.currentUser.getName()}"></a>
+
+
+            <div th:if="${#ctx.session.isEmpty()}" class="header-right-side-btns-box">
+                <a href="/login">
+                    <button class="login-btn">Login</button>
+                </a>
+            </div>
+            <div class="header-right-side-btns-box" th:if="${!#ctx.session.isEmpty()}">
+                <a th:href="@{/logout}">
+                    <button class="login-btn">Logout</button>
+                </a>
+            </div>
         </div>
-        <a class="header-btn" th:if="${!#ctx.session.isEmpty()}" th:text="${#ctx.session.currentUser.getName()}"></a>
-        <a th:if="${#ctx.session.isEmpty()}" href="/login"><button class="login-btn header-btn">Login</button></a>
-        <a th:if="${!#ctx.session.isEmpty()}" th:href="@{/logout}"><button class="login-btn header-btn">Logout</button></a>
-    </div>
-</header>
+    </header>
 
 
     <div class="center-screen">
 
-        <form method="post">
+        <a th:if="${#ctx.session.isEmpty()}" href="/login">
+            <button class="ButtonClass" type="submit"> Buy Cupcakes</button>
+        </a>
 
-            <button class="ButtonClass" type="submit" formaction="/cupcakeSelection"> Buy Cupcakes</button>
+        <a th:if="${!#ctx.session.isEmpty()}" href="/cupcakeSelection">
+            <button th:if="${#ctx.session.currentUser.role.equals('customer') || #ctx.session.currentUser.role.equals('user')}"
+                    class="ButtonClass" type="submit"> Buy Cupcakes
+            </button>
+        </a>
+
+        <a th:if="${!#ctx.session.isEmpty()}" href="/adminpage">
+            <button th:if="${#ctx.session.currentUser.role.equals('admin')}" class="ButtonClass" type="submit"> Buy
+                Cupcakes
+            </button>
+        </a>
 
 
-        </form>
     </div>
 </div>
 </body>
