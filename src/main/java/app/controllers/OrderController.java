@@ -20,8 +20,6 @@ public class OrderController {
 
         User currentUser = ctx.sessionAttribute("currentUser");
 
-        List<Topping> allToppings;
-        List<Bottom> allBottoms;
 
         try{
 
@@ -45,11 +43,7 @@ public class OrderController {
                 ctx.render("/receipt.html");
             }
             else{
-                // Rendering cupcakeSelection.html if customer doesn't have enough money and showing info message
-                allBottoms = OptionsMapper.getAllBottoms(connectionPool);
-                allToppings = OptionsMapper.getAllToppings(connectionPool);
-                ctx.attribute("allBottoms", allBottoms);
-                ctx.attribute("allToppings", allToppings);
+
                 ctx.attribute("noMoney","You don't have enough money to buy that many cupcakes. Control yourself.");
                 ctx.render("/cupcakeSelection.html");
             }

@@ -29,7 +29,7 @@
                     <td th:text="${orderline.totalprice}"></td>
                 </tr>
                 <tr>
-                    <td th:text="'Total Price:' + ${ctx.receipt.totalPriceOfCart}"></td>
+                    <td th:text="'Total Price:' + ${#ctx.receipt.totalPriceOfCart}"></td>
                 </tr>
             </table>
         </div>
