@@ -16,7 +16,7 @@
         <div class="header-left-side-btns-box">
            <a href="/"> <button class="home-btn header-btn">Home</button></a>
            <a th:if="${!#ctx.session.isEmpty()}">
-               <button class="orders-btn header-btn" th:if="${#ctx.session.currentUser.role.equals('customer') || #ctx.session.currentUser.role.equals('user')}" th:value="${#ctx.session.currentUser.id}">Orders</button>
+               <a href="/userPage"><button class="orders-btn header-btn" th:if="${#ctx.session.currentUser.role.equals('customer') || #ctx.session.currentUser.role.equals('user')}" th:value="${#ctx.session.currentUser.id}">Orders</button></a>
                <button class="all-orders-btn header-btn" th:if="${#ctx.session.currentUser.role.equals('admin')}" th:value="${#ctx.session.currentUser.id}">Manage</button>
            </a>
         </div>

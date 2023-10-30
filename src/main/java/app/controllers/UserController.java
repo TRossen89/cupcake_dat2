@@ -86,9 +86,9 @@ public class UserController {
 
     public static void renderUserpage(Context ctx, ConnectionPool connectionPool) {
         List<Order> orders = null;
-        int userId = Integer.parseInt(ctx.sessionAttribute("currentUser.id"));
+        User user = ctx.sessionAttribute("currentUser");
         try {
-            orders = UserMapper.getUserOrders(userId, connectionPool);
+            orders = UserMapper.getUserOrders(user.getId(), connectionPool);
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

@@ -9,14 +9,10 @@
 <body>
 
 <header>
-    <div class="page-box">
-        <div class="header-for-all-pages">
-            <button class="home-btn">Home</button>
-        </div>
-    </div>
+    <div th:replace="~{frontpage :: header}"></div>
 </header>
 <div>
-    <h2> <span th:text="${#ctx.session.currentUser.name}"></span> Ordre </h2>
+    <h2> <span th:text="${#ctx.session.currentUser.name}"></span>'s Ordre </h2>
     <table>
         <thead>
         <tr>
@@ -25,7 +21,7 @@
         </thead>
         <tbody>
         <tr th:each="order : ${#ctx.session.userOrders}">
-            <td th:text="${userOrders.date}">DATE</td>
+            <td th:text="${order.date}">DATE</td>
             <td><form method="post"> <input type="number" name="orderid" hidden th:attr="value=${order.id}"></input><button type="submit" formaction="/userOrderlinePage">Show orderlines</button></form></td>
         </tr>
         </tbody>

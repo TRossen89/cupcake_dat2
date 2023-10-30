@@ -74,8 +74,7 @@ public class UserMapper {
                     int id = resultSet.getInt("id");
                     Date date = resultSet.getDate("date");
                     String status = resultSet.getString("status");
-                    String userName = resultSet.getString("username");
-                    Order order = new Order(id, date, status, userName);
+                    Order order = new Order(id, date, status, "");
                     orders.add(order);
                 }
             }
