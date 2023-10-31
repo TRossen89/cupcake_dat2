@@ -4,45 +4,76 @@
 
 |Customer|
 
+
 start
-:Visits homepage;
+:Enters URL of Cupcake-webside in browser;
+|Webside|
+:Renders homepage;
+:Homepage]
+|Customer|
 :Presses 'Login' or 'Buy Cupcakes';
-|Webside|
+
 repeat
-:Renders login-page;
-:Login-page]
-|Customer|
-:Enters credentials;
-|Webside|
+    |Webside|
+    :Renders Login-page;
+    :Login-page]
+    |Customer|
+        if (Presses 'Create User' or Enters credentials) then('Create User')
 
-backward: Sends message: "(...). Try again";
+            |Webside|
+            :Renders Create User-page;
+            :Create User-page]
+            |Customer|
+            :Enters username and password;
+            :Indicates wether user is an admin;
+            :Presses 'Create User';
+            |Webside|
+            :Renders Login-page;
+            :Login-page]
+        endif
+        ->Enters credentials;
+            |Customer|
+            :Presses Login;
+            |Webside|
+            :Checks credentials;
 
-:Checks credentials;
+backward: Sends msg: "(...). Try again";
+-[#red]->
 repeat while (Credentials?) is (Not OK)
+->OK;
 
-|Webside|
 repeat
-:Renders Cupcake Selection-page;
-:Cupcake Selection-page]
-|Customer|
-:Chooses cupcakes;
-:Presses 'Buy';
-|Webside|
+    :Renders Cupcake Selection-page;
+    :Cupcake Selection-page]
+    fork
 
-backward: message: "Not enough money"]
+    |Customer|
+    :Chooses cupcakes;
+    :Presses 'Buy';
+    fork again
+    |Webside|
 
-repeat while (Balance is 0 or above) is (no)
+    :Shows Cart at page;
+    end fork
+
+    |Webside|
+    backward: Sends msg: "Not enough money"]
+
+repeat while (Balance is 0 or above) is (No)
+->Yes;
+
 :Saves order;
-:Creates receipt;
+:Creates receipt and pickup time;
+:Receipt and pickup time]
 fork
 |Customer|
-:receipt and pickup time>]
+:Reads receipt and pickup time;
 :Leaves webside;
 :Picks up cupcakes at shop;
 fork again
 |Webside|
-:receipt and pickup time>
 stop
+
 |Shop|
 :Asks for next order<
 |Webside|
