@@ -1,0 +1,93 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+
+|Customer|
+
+start
+:Visits homepage;
+:Presses 'Login' or 'Buy Cupcakes';
+|Webside|
+repeat
+:Renders login-page;
+:Login-page]
+|Customer|
+:Enters credentials;
+|Webside|
+
+backward: Sends message: "(...). Try again";
+
+:Checks credentials;
+repeat while (Credentials?) is (Not OK)
+
+|Webside|
+repeat
+:Renders Cupcake Selection-page;
+:Cupcake Selection-page]
+|Customer|
+:Chooses cupcakes;
+:Presses 'Buy';
+|Webside|
+
+backward: message: "Not enough money"]
+
+repeat while (Balance is 0 or above) is (no)
+:Saves order;
+:Creates receipt;
+fork
+|Customer|
+:receipt and pickup time>]
+:Leaves webside;
+:Picks up cupcakes at shop;
+fork again
+|Webside|
+:receipt and pickup time>
+stop
+|Shop|
+:Asks for next order<
+|Webside|
+:Shows receipt of next order;
+
+|Shop|
+:Makes cupcakes;
+:Cupcakes]
+:Makes cupcakes ready for pickup;
+end fork
+stop
+
+
+/'
+
+:ClickServlet.handleRequest();
+:new page;
+if (Page.onSecurityCheck) then (true)
+  :Page.onInit();
+  if (isForward?) then (no)
+    :Process controls;
+    if (continue processing?) then (no)
+      stop
+    endif
+
+    if (isPost?) then (yes)
+      :Page.onPost();
+    else (no)
+      :Page.onGet();
+    endif
+    :Page.onRender();
+  endif
+else (false)
+endif
+
+if (do redirect?) then (yes)
+  :redirect process;
+else
+  if (do forward?) then (yes)
+    :Forward request;
+  else (no)
+    :Render page template;
+  endif
+endif
+'/
+
+
+@enduml
