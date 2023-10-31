@@ -52,6 +52,7 @@ stop
 :Makes cupcakes;
 :Cupcakes]
 :Makes cupcakes ready for pickup;
+:Cupcakes ready for pickup]
 end fork
 stop
 
