@@ -1,0 +1,27 @@
+@startuml
+Title navigasionsdiagram
+[*] --> home
+home -> login : ikke logget ind
+login --> cupcakeSelection : log på user
+login --> signUp
+login -> login : fejl login
+login --> adminpage : log på admin
+home --> cupcakeSelection : er logget ind
+home ----> adminpage: er logget ind
+signUp --> login
+
+
+state adminpage{
+state adminOrderline
+}
+
+state cupcakeSelection{
+state buyCupcake
+state orders
+state receipt
+buyCupcake --> receipt
+buyCupcake --> orders
+receipt -> orders
+}
+
+@enduml
