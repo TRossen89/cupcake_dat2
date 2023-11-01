@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+Admin *-- Balance
+Balance *-- Admin
+Order *-- Admin
+Cart *-- Order
+Cupcake *-- Cart
+Cupcake *-- Admin
+Cupcake *-- Customer
+Customer *-- Cupcake
+Customer *-- Balance
+
+@enduml
