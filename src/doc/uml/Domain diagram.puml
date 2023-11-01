@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+skinparam linetype ortho
+
+Admin *- Balance
+Balance *- Admin
+Order *- Admin
+Cart *- Order
+Cupcake *- Cart
+Cupcake *-- Admin
+Cupcake *-- Customer
+Customer *-- Cupcake
+Customer *-- Balance
+
+@enduml
