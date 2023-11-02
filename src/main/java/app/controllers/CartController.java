@@ -22,12 +22,45 @@ public class CartController {
 
         Cart cart = ctx.sessionAttribute("cart");
 
-        try {
+        List<Bottom> allBottoms = ctx.sessionAttribute("allBottoms");
+        List<Topping> allToppings = ctx.sessionAttribute("allToppings");
 
+        Bottom bottomChosen = null;
+        Topping toppingChosen = null;
+
+        for (Bottom bottom : allBottoms) {
+            if (bottom.getId() == bottomId) {
+                bottomChosen = bottom;
+            }
+        }
+
+        for (Topping topping : allToppings) {
+            if (topping.getId() == toppingId) {
+                toppingChosen = topping;
+            }
+        }
+
+        double totalPrice = quantity * (bottomChosen.getPrice() + toppingChosen.getPrice());
+
+        Orderline newOrderline = new Orderline(bottomChosen, toppingChosen, quantity, totalPrice);
+
+
+        cart.addToCart(newOrderline);
+        ctx.sessionAttribute("cart", cart);
+        ctx.render("/cupcakeSelection.html");
+
+
+    }
+
+
+  /*
+        try {
+/*
             Orderline newOrderline = OrderlineMapper.getOrderline(bottomId, toppingId, quantity, connectionPool);
+
+
             cart.addToCart(newOrderline);
             ctx.sessionAttribute("cart", cart);
-
             ctx.render("/cupcakeSelection.html");
 
         } catch (DatabaseException e) {
@@ -36,6 +69,8 @@ public class CartController {
             ctx.render("/cupcakeSelection.html");
         }
     }
+
+   */
 
     public static void deleteOrderline(Context ctx, ConnectionPool connectionPool) {
 
@@ -48,6 +83,5 @@ public class CartController {
 
         ctx.sessionAttribute("cart", cart);
         ctx.render("/cupcakeSelection.html");
-
     }
 }

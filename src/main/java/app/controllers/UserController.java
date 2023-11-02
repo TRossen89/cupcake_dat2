@@ -27,6 +27,7 @@ public class UserController {
         String name = ctx.formParam("username");
         String password = ctx.formParam("password");
 
+
         try
         {
             User user = UserMapper.login(name, password, connectionPool);
@@ -40,7 +41,14 @@ public class UserController {
             if(user.getRole().equals("admin")){
                 ctx.redirect("/adminpage");
             } else {
-                ctx.redirect("/userpage");
+                String buttonPressed = ctx.formParam("loginButton");
+
+                if(buttonPressed!= null && buttonPressed.equals("1")){
+                    ctx.redirect("/userpage");
+                }
+                else{
+                    ctx.render("/frontpage.html");
+                }
             }
             
         }
@@ -118,6 +126,19 @@ public class UserController {
     }
 
 
+    public static void loginToBuyCupcakes(Context ctx) {
+
+        String valueForLoginButton = ctx.formParam("buyCupcakes");
+        ctx.attribute("goToLoginFromFrontpage", valueForLoginButton);
+        ctx.render("/login.html");
+    }
+
+    public static void loginToLogin(Context ctx) {
+
+        String valueForLoginButton = ctx.formParam("loginToLogin");
+        ctx.attribute("goToLoginFromFrontpage", valueForLoginButton);
+        ctx.render("/login.html");
+    }
 }
 
 

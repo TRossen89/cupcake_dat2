@@ -25,7 +25,7 @@
             <label for="pwd">Password:</label><br>
             <input type="password" class="login-input" id="pwd" name="password"><br><br>
 
-            <button type="submit" class="loginFormButton" formaction="/login">Login</button>
+            <button type="submit" class="loginFormButton" formaction="/login" th:value="${#ctx.goToLoginFromFrontpage}" name="loginButton">Login</button>
 
             <a href="/createUser">
                 <button type="button" class="loginFormButton">Sign Up</button>

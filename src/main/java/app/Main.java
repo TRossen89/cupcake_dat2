@@ -48,13 +48,15 @@ public class Main {
         // Routing
         app.get("/", ctx -> renderFrontPage(ctx));
   
-        app.get("/login", ctx -> ctx.render("login.html"));
+        app.get("/login", ctx -> ctx.render("/login.html"));
 
         app.post("/login", ctx -> UserController.login(ctx, connectionPool));
+        app.post("/loginToBuyCupcakes", ctx -> UserController.loginToBuyCupcakes(ctx));
+        app.post("/loginToLogin", ctx -> UserController.loginToLogin(ctx));
 
         app.get("/logout", ctx -> UserController.logout(ctx));
 
-        app.get("/cupcakeSelection", ctx-> ctx.render("cupcakeSelection.html"));
+        app.get("/cupcakeSelection", ctx-> ctx.render("/cupcakeSelection.html"));
 
 
         app.get("/userpage", ctx -> ctx.render("/cupcakeSelection.html"));

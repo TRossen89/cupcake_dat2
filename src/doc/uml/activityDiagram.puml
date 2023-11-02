@@ -2,12 +2,12 @@
 'https://plantuml.com/activity-diagram-beta
 
 
-|Customer|
+|#pink|Customer|
 
 
 start
 :Enters URL of Cupcake-webside in browser;
-|Webside|
+|#lightgray|Webside|
 :Renders homepage;
 :Homepage]
 |Customer|
@@ -39,6 +39,7 @@ repeat
 
 backward: Sends msg: "(...). Try again";
 -[#red]->
+
 repeat while (Credentials?) is (Not OK)
 ->OK;
 
@@ -74,7 +75,7 @@ fork again
 |Webside|
 stop
 
-|Shop|
+|#lightblue|Shop|
 :Asks for next order<
 |Webside|
 :Shows receipt of next order;

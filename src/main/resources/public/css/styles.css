@@ -23,9 +23,8 @@
     flex-direction: row;
 
 }.intermediate-header-left-side-btns-box{
-    /*border: solid orange;
-
-     */
+    display: flex;
+    flex-direction: row;
 
 
 }
